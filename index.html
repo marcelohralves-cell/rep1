@@ -1,333 +1,864 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recanto das Seriemas</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recanto das Seriemas — Pousada & Parrilla</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #FAF6F0;
+  --warm-white: #FFFDF9;
+  --sand: #E8DFD0;
+  --terracotta: #B85C3A;
+  --terracotta-light: #D4845F;
+  --olive: #5C6B4F;
+  --olive-light: #7A8B6A;
+  --charcoal: #2C2825;
+  --warm-gray: #8A8078;
+  --gold: #C4A265;
+  --blush: #F2E6DA;
+  --sage: #D5DDCC;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--charcoal);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.5s ease;
+  background: transparent;
+}
+.navbar.scrolled {
+  background: rgba(250, 246, 240, 0.95);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 20px rgba(44,40,37,0.06);
+  padding: 14px 40px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: 0.5px;
+}
+.nav-logo span { color: var(--terracotta); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--warm-gray);
+  text-decoration: none; letter-spacing: 1.2px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--terracotta); }
+.nav-cta {
+  background: var(--terracotta) !important; color: #fff !important;
+  padding: 10px 24px !important; border-radius: 100px;
+  font-size: 12px !important; letter-spacing: 1.5px !important;
+  transition: background 0.3s !important;
+}
+.nav-cta:hover { background: var(--terracotta-light) !important; }
+
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--charcoal); transition: all 0.3s; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(250,246,240,0.3) 0%, rgba(232,223,208,0.5) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03"/></svg>');
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -50%; right: -20%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(184,92,58,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatOrb 20s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -30%; left: -10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(92,107,79,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatOrb 25s ease-in-out infinite reverse;
+}
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -40px); }
+}
+
+.hero-content {
+  text-align: center; position: relative; z-index: 2;
+  padding: 0 24px; max-width: 900px;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--terracotta); font-weight: 600;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 1s 0.3s forwards;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 7vw, 86px);
+  font-weight: 400; line-height: 1.08;
+  color: var(--charcoal);
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 1s 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic; color: var(--terracotta);
+  font-weight: 400;
+}
+.hero-sub {
+  font-size: 17px; color: var(--warm-gray);
+  max-width: 520px; margin: 0 auto 40px;
+  line-height: 1.7; font-weight: 300;
+  opacity: 0; animation: fadeUp 1s 0.7s forwards;
+}
+.hero-btns {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s 0.9s forwards;
+}
+.btn-primary {
+  background: var(--terracotta); color: #fff;
+  padding: 16px 40px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  transition: all 0.4s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--terracotta-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,92,58,0.25); }
+.btn-secondary {
+  background: transparent; color: var(--charcoal);
+  padding: 16px 40px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  border: 1.5px solid var(--sand);
+  transition: all 0.4s; cursor: pointer;
+}
+.btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeUp 1s 1.2s forwards;
+}
+.hero-scroll span { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--warm-gray); }
+.scroll-line { width: 1px; height: 40px; background: var(--sand); position: relative; overflow: hidden; }
+.scroll-line::after {
+  content: ''; position: absolute; top: -100%; left: 0;
+  width: 1px; height: 100%; background: var(--terracotta);
+  animation: scrollDown 2s ease-in-out infinite;
+}
+@keyframes scrollDown { 0% { top: -100%; } 100% { top: 100%; } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION SHARED ── */
+section { padding: 120px 40px; }
+.section-tag {
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--terracotta); font-weight: 600; margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400; line-height: 1.15;
+  margin-bottom: 20px;
+}
+.section-title em { font-style: italic; color: var(--terracotta); }
+.section-desc {
+  font-size: 16px; color: var(--warm-gray); line-height: 1.8;
+  max-width: 560px; font-weight: 300;
+}
+
+/* ── ABOUT STRIP ── */
+.about-strip {
+  display: flex; align-items: center; gap: 80px;
+  max-width: 1200px; margin: 0 auto;
+}
+.about-visual {
+  flex: 1; min-width: 300px; position: relative;
+}
+.about-img {
+  width: 100%; aspect-ratio: 4/5; border-radius: 16px;
+  background: linear-gradient(135deg, var(--sand) 0%, var(--blush) 100%);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.about-img-inner {
+  font-size: 100px; opacity: 0.3;
+}
+.about-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--olive); color: #fff;
+  padding: 20px 28px; border-radius: 16px;
+  text-align: center;
+}
+.about-badge-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; }
+.about-badge-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; margin-top: 2px; }
+.about-text { flex: 1; }
+.about-features {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 36px;
+}
+.about-feat {
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.about-feat-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--blush); display: flex; align-items: center;
+  justify-content: center; font-size: 20px; flex-shrink: 0;
+}
+.about-feat h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.about-feat p { font-size: 13px; color: var(--warm-gray); line-height: 1.5; }
+
+/* ── EXPERIENCES ── */
+.experiences-bg { background: var(--warm-white); }
+.exp-header { text-align: center; margin-bottom: 64px; }
+.exp-header .section-desc { margin: 0 auto; }
+.exp-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  max-width: 1200px; margin: 0 auto;
+}
+.exp-card {
+  border-radius: 20px; overflow: hidden;
+  background: var(--cream);
+  border: 1px solid rgba(232,223,208,0.6);
+  transition: all 0.5s;
+  position: relative;
+}
+.exp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(44,40,37,0.08); }
+.exp-card-img {
+  height: 240px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px; position: relative;
+}
+.exp-card:nth-child(1) .exp-card-img { background: linear-gradient(135deg, #F2E0D0, #E8CCBB); }
+.exp-card:nth-child(2) .exp-card-img { background: linear-gradient(135deg, #D5DDCC, #C4D0B8); }
+.exp-card:nth-child(3) .exp-card-img { background: linear-gradient(135deg, #E6D8E8, #D8C6DC); }
+.exp-card-body { padding: 28px 28px 32px; }
+.exp-card-tag {
+  font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--terracotta); font-weight: 600; margin-bottom: 12px;
+}
+.exp-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 400; margin-bottom: 12px;
+}
+.exp-card-desc {
+  font-size: 14px; color: var(--warm-gray); line-height: 1.7; margin-bottom: 20px;
+}
+.exp-card-link {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--terracotta); text-decoration: none; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: gap 0.3s;
+}
+.exp-card-link:hover { gap: 14px; }
+
+/* ── PACKAGES ── */
+.packages-section { max-width: 1200px; margin: 0 auto; }
+.pkg-header { text-align: center; margin-bottom: 64px; }
+.pkg-header .section-desc { margin: 0 auto; }
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pkg-card {
+  border-radius: 20px; padding: 36px 32px;
+  background: var(--warm-white);
+  border: 1.5px solid var(--sand);
+  transition: all 0.4s; position: relative;
+}
+.pkg-card:hover { border-color: var(--terracotta); }
+.pkg-card.featured {
+  border-color: var(--terracotta);
+  background: linear-gradient(170deg, var(--warm-white) 0%, rgba(184,92,58,0.03) 100%);
+}
+.pkg-card.featured::before {
+  content: 'MAIS POPULAR'; position: absolute; top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--terracotta); color: #fff;
+  font-size: 10px; letter-spacing: 2px; font-weight: 700;
+  padding: 6px 20px; border-radius: 100px;
+}
+.pkg-emoji { font-size: 36px; margin-bottom: 20px; display: block; }
+.pkg-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 400; margin-bottom: 6px;
+}
+.pkg-tagline {
+  font-size: 14px; color: var(--terracotta); font-style: italic;
+  margin-bottom: 24px; font-family: 'Playfair Display', serif;
+}
+.pkg-list { list-style: none; margin-bottom: 28px; }
+.pkg-list li {
+  font-size: 14px; color: var(--warm-gray); padding: 8px 0;
+  border-bottom: 1px solid rgba(232,223,208,0.5);
+  display: flex; gap: 10px; align-items: center;
+}
+.pkg-list li::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--olive); border-radius: 50%; flex-shrink: 0;
+}
+.pkg-cta {
+  display: block; width: 100%; text-align: center;
+  padding: 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  transition: all 0.3s; cursor: pointer; border: none;
+}
+.pkg-card.featured .pkg-cta {
+  background: var(--terracotta); color: #fff;
+}
+.pkg-card.featured .pkg-cta:hover { background: var(--terracotta-light); }
+.pkg-card:not(.featured) .pkg-cta {
+  background: transparent; color: var(--charcoal);
+  border: 1.5px solid var(--sand);
+}
+.pkg-card:not(.featured) .pkg-cta:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+/* ── GALLERY MOSAIC ── */
+.gallery-section { background: var(--warm-white); }
+.gallery-header { text-align: center; margin-bottom: 56px; }
+.gallery-grid {
+  display: grid; max-width: 1200px; margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 260px 260px;
+  gap: 16px;
+}
+.g-item {
+  border-radius: 16px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; position: relative;
+  transition: all 0.5s; cursor: pointer;
+}
+.g-item:hover { transform: scale(1.02); }
+.g-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(44,40,37,0.3) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.g-item:hover::after { opacity: 1; }
+.g-item:nth-child(1) { grid-column: span 2; background: linear-gradient(135deg, #E8D5C4, #D4BFAE); }
+.g-item:nth-child(2) { background: linear-gradient(135deg, #C4D0B8, #B0C0A0); }
+.g-item:nth-child(3) { background: linear-gradient(135deg, #D8C6DC, #C8B4CC); }
+.g-item:nth-child(4) { background: linear-gradient(135deg, #D4BFAE, #C4A08E); }
+.g-item:nth-child(5) { background: linear-gradient(135deg, #E0D0C0, #D0BCA8); }
+.g-item:nth-child(6) { grid-column: span 2; background: linear-gradient(135deg, #B8C8A8, #A0B890); }
+.g-label {
+  position: absolute; bottom: 16px; left: 20px;
+  color: #fff; font-size: 13px; font-weight: 500;
+  letter-spacing: 1px; z-index: 2;
+  opacity: 0; transform: translateY(8px);
+  transition: all 0.4s;
+}
+.g-item:hover .g-label { opacity: 1; transform: translateY(0); }
+
+/* ── TESTIMONIAL ── */
+.testimonial-section {
+  background: var(--cream); text-align: center;
+  max-width: 800px; margin: 0 auto;
+}
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-style: italic; line-height: 1.6;
+  color: var(--charcoal); margin-bottom: 28px;
+  position: relative;
+}
+.testimonial-quote::before {
+  content: '"'; position: absolute; top: -40px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 120px; color: var(--sand);
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+}
+.testimonial-author { font-size: 14px; color: var(--warm-gray); font-weight: 500; }
+.testimonial-stars { color: var(--gold); font-size: 18px; margin-bottom: 12px; letter-spacing: 4px; }
+
+/* ── LOCATION ── */
+.location-section { background: var(--warm-white); }
+.loc-wrap {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.loc-map {
+  width: 100%; aspect-ratio: 4/3; border-radius: 20px;
+  background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.loc-map-placeholder {
+  text-align: center; color: var(--warm-gray);
+}
+.loc-map-placeholder .pin { font-size: 48px; margin-bottom: 12px; }
+.loc-map-placeholder p { font-size: 13px; }
+.loc-details { display: flex; flex-direction: column; gap: 28px; }
+.loc-item { display: flex; gap: 16px; align-items: flex-start; }
+.loc-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: var(--blush); display: flex; align-items: center;
+  justify-content: center; font-size: 22px; flex-shrink: 0;
+}
+.loc-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.loc-item p { font-size: 14px; color: var(--warm-gray); line-height: 1.6; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  padding: 100px 40px;
+  background:
+    linear-gradient(135deg, rgba(92,107,79,0.06) 0%, rgba(184,92,58,0.06) 100%),
+    var(--cream);
+  text-align: center;
+}
+.cta-inner { max-width: 640px; margin: 0 auto; }
+.cta-inner .section-title { margin-bottom: 16px; }
+.cta-inner .section-desc { margin: 0 auto 36px; }
+.cta-whatsapp {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #25D366; color: #fff;
+  padding: 18px 44px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; letter-spacing: 1px;
+  text-decoration: none; transition: all 0.4s;
+  border: none; cursor: pointer;
+}
+.cta-whatsapp:hover { background: #1fba59; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.3); }
+.cta-whatsapp svg { width: 20px; height: 20px; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 60px 40px 32px;
+  background: var(--cream);
+  border-top: 1px solid var(--sand);
+}
+.footer-top {
+  max-width: 1200px; margin: 0 auto 40px;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 600; margin-bottom: 12px;
+}
+.footer-brand span { color: var(--terracotta); }
+.footer-tagline { font-size: 14px; color: var(--warm-gray); line-height: 1.6; max-width: 280px; }
+.footer-col h5 {
+  font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--terracotta); font-weight: 600; margin-bottom: 16px;
+}
+.footer-col a {
+  display: block; font-size: 14px; color: var(--warm-gray);
+  text-decoration: none; margin-bottom: 10px; transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--terracotta); }
+.footer-bottom {
+  max-width: 1200px; margin: 0 auto;
+  padding-top: 24px; border-top: 1px solid var(--sand);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--warm-gray);
+}
+.footer-social { display: flex; gap: 16px; }
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--blush); display: flex; align-items: center;
+  justify-content: center; font-size: 16px;
+  text-decoration: none; transition: all 0.3s;
+}
+.footer-social a:hover { background: var(--terracotta); transform: scale(1.1); }
+
+/* ── MOBILE NAV OVERLAY ── */
+.mobile-nav {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(250,246,240,0.98);
+  backdrop-filter: blur(20px);
+  z-index: 99; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 28px;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s;
+}
+.mobile-nav.open { opacity: 1; pointer-events: all; }
+.mobile-nav a {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; color: var(--charcoal);
+  text-decoration: none; transition: color 0.3s;
+}
+.mobile-nav a:hover { color: var(--terracotta); }
+.mobile-close {
+  position: absolute; top: 24px; right: 32px;
+  font-size: 28px; cursor: pointer; color: var(--charcoal);
+  background: none; border: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .exp-grid, .pkg-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .about-strip { flex-direction: column; gap: 48px; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .g-item:nth-child(1), .g-item:nth-child(6) { grid-column: span 2; }
+  .loc-wrap { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  section { padding: 80px 20px; }
+  .navbar { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .about-features { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .g-item:nth-child(1), .g-item:nth-child(6) { grid-column: span 1; }
+  .gallery-grid .g-item { height: 200px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <header class="header" id="header">
-    <div class="container nav-container">
-      <a href="#hero" class="logo">
-        <span class="logo-icon">🐦</span>
-        <span class="logo-text">Recanto das Seriemas</span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav" id="nav">
-        <a href="#sobre">Sobre</a>
-        <a href="#atracoes">Atrações</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#como-chegar">Como Chegar</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </div>
-  </header>
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">Recanto das <span>Seriemas</span></div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#experiencias">Experiências</a>
+    <a href="#pacotes">Pacotes</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#reservar" class="nav-cta">Reservar</a>
+  </div>
+  <div class="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Recanto das Seriemas</h1>
-      <p class="hero-tagline">Um refúgio de natureza, paz e biodiversidade no coração do cerrado</p>
-      <a href="#sobre" class="btn btn-primary">Conheça o Recanto</a>
-    </div>
-    <div class="hero-scroll-hint">
-      <span>↓</span>
-    </div>
-  </section>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="toggleMobile()">&times;</button>
+  <a href="#sobre" onclick="toggleMobile()">Sobre</a>
+  <a href="#experiencias" onclick="toggleMobile()">Experiências</a>
+  <a href="#pacotes" onclick="toggleMobile()">Pacotes</a>
+  <a href="#galeria" onclick="toggleMobile()">Galeria</a>
+  <a href="#localizacao" onclick="toggleMobile()">Localização</a>
+  <a href="#reservar" onclick="toggleMobile()">Reservar</a>
+</div>
 
-  <!-- SOBRE -->
-  <section class="section" id="sobre">
-    <div class="container">
-      <div class="section-grid">
-        <div class="section-text">
-          <span class="section-label">Sobre nós</span>
-          <h2>Um lugar onde a natureza fala mais alto</h2>
-          <p>
-            Recanto das Seriemas é uma propriedade rural dedicada à preservação da fauna e flora do cerrado brasileiro.
-            Aqui você encontra trilhas, silêncio, ar puro e o chamado inconfundível da seriema — uma das aves mais
-            emblemáticas do Brasil.
-          </p>
-          <p>
-            Fundado com o compromisso de unir ecoturismo responsável e educação ambiental, o Recanto recebe famílias,
-            grupos e pesquisadores que buscam uma experiência autêntica com a natureza.
-          </p>
-        </div>
-        <div class="section-visual">
-          <div class="visual-card">
-            <div class="visual-icon">🌿</div>
-            <h3>Área preservada</h3>
-            <p>Mais de 50 hectares de cerrado nativo intocado.</p>
-          </div>
-          <div class="visual-card">
-            <div class="visual-icon">🐦</div>
-            <h3>Avifauna rica</h3>
-            <p>Mais de 120 espécies de aves registradas na propriedade.</p>
-          </div>
-          <div class="visual-card">
-            <div class="visual-icon">♻️</div>
-            <h3>Ecoturismo</h3>
-            <p>Turismo responsável com foco em preservação e educação.</p>
-          </div>
-        </div>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">São Pedro, SP &mdash; Serra do Itaqueri</div>
+    <h1 class="hero-title">Brasa, vinho<br>e <em>campo aberto</em></h1>
+    <p class="hero-sub">Onde a parrilla de lenha encontra o vinhedo, e o silêncio do interior se transforma em experiência.</p>
+    <div class="hero-btns">
+      <a href="#reservar" class="btn-primary">Reserve sua estadia</a>
+      <a href="#experiencias" class="btn-secondary">Conheça o Recanto</a>
     </div>
-  </section>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubra</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-  <!-- ATRAÇÕES -->
-  <section class="section section-alt" id="atracoes">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">O que fazer</span>
-        <h2>Atrações e Atividades</h2>
-        <p>Descubra tudo que o Recanto das Seriemas tem a oferecer para você e sua família.</p>
+<!-- ABOUT -->
+<section id="sobre">
+  <div class="about-strip">
+    <div class="about-visual">
+      <div class="about-img">
+        <div class="about-img-inner">🏡</div>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🥾</div>
-          <h3>Trilhas Ecológicas</h3>
-          <p>Percursos guiados por dentro do cerrado nativo, com identificação de plantas e animais locais.</p>
+      <div class="about-badge">
+        <div class="about-badge-num">5★</div>
+        <div class="about-badge-label">No Airbnb</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Sobre o Recanto</div>
+      <h2 class="section-title">Um retiro<br><em>gastronômico</em><br>no interior paulista</h2>
+      <p class="section-desc">Mais do que uma pousada, o Recanto das Seriemas é um destino completo para quem busca desconexão, boa mesa e paisagens que renovam. Na Serra do Itaqueri, entre São Pedro e Brotas, cada detalhe foi pensado para transformar um fim de semana em memória.</p>
+      <div class="about-features">
+        <div class="about-feat">
+          <div class="about-feat-icon">🔥</div>
+          <div>
+            <h4>Parrilla de Lenha</h4>
+            <p>Cortes nobres na brasa, como na tradição gaúcha e argentina.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-icon">🔭</div>
-          <h3>Observação de Aves</h3>
-          <p>Saídas ao amanhecer para avistamento de seriemas, tucanos, araras e dezenas de outras espécies.</p>
+        <div class="about-feat">
+          <div class="about-feat-icon">🍇</div>
+          <div>
+            <h4>Vinhedo Próprio</h4>
+            <p>Da uva à taça — degustação com vista para a serra.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-icon">🏕️</div>
-          <h3>Camping</h3>
-          <p>Área de acampamento com infraestrutura básica para uma noite inesquecível sob as estrelas do cerrado.</p>
+        <div class="about-feat">
+          <div class="about-feat-icon">🛏️</div>
+          <div>
+            <h4>Suítes Confortáveis</h4>
+            <p>Ambientes acolhedores com varanda e vista para o campo.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-icon">📚</div>
-          <h3>Educação Ambiental</h3>
-          <p>Programas para escolas e grupos sobre conservação do cerrado e a importância da fauna nativa.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌅</div>
-          <h3>Contemplação</h3>
-          <p>Mirantes e áreas de descanso para apreciar a paisagem e o pôr do sol sobre o cerrado.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📷</div>
-          <h3>Fotografia de Natureza</h3>
-          <p>Cenários e fauna privilegiados para fotógrafos amadores e profissionais de natureza.</p>
+        <div class="about-feat">
+          <div class="about-feat-icon">🌿</div>
+          <div>
+            <h4>Natureza Viva</h4>
+            <p>Trilhas, redes no vale e pôr do sol que vale o caminho.</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- A SERIEMA -->
-  <section class="section section-bird" id="seriema">
-    <div class="bird-bg"></div>
-    <div class="container">
-      <div class="bird-content">
-        <div class="bird-text">
-          <span class="section-label light">A ave símbolo</span>
-          <h2>A Seriema</h2>
-          <p>
-            A seriema (<em>Cariama cristata</em>) é uma ave típica do cerrado, campos e caatingas do Brasil central.
-            Com seu grito inconfundível que ecoa pelos campos ao amanhecer, ela se tornou o símbolo perfeito para
-            este recanto de natureza.
-          </p>
-          <p>
-            Considerada uma das últimas descendentes dos pássaros do terror da era pré-histórica, a seriema é hoje
-            um ícone da fauna brasileira — elegante, resistente e absolutamente única.
-          </p>
-          <ul class="bird-facts">
-            <li><strong>Nome científico:</strong> Cariama cristata</li>
-            <li><strong>Comprimento:</strong> até 90 cm</li>
-            <li><strong>Habitat:</strong> cerrado, campos abertos e caatinga</li>
-            <li><strong>Alimentação:</strong> insetos, lagartos, pequenos roedores e serpentes</li>
-          </ul>
-        </div>
-        <div class="bird-visual">
-          <div class="bird-illustration">
-            <div class="bird-emoji">🐦</div>
-            <p class="bird-caption">Cariama cristata<br /><small>Seriema — ave símbolo do Recanto</small></p>
-          </div>
-        </div>
+<!-- EXPERIENCES -->
+<section class="experiences-bg" id="experiencias">
+  <div class="exp-header">
+    <div class="section-tag">Experiências</div>
+    <h2 class="section-title">Três formas de<br>viver o <em>Recanto</em></h2>
+    <p class="section-desc">Cada visita conta uma história diferente. Escolha a sua — ou viva todas.</p>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-card-img">🔥</div>
+      <div class="exp-card-body">
+        <div class="exp-card-tag">Gastronomia</div>
+        <h3 class="exp-card-title">A Parrilla</h3>
+        <p class="exp-card-desc">Cortes selecionados, fogo de lenha e o tempo certo. Nossa parrilla é o coração do Recanto — aberta nos fins de semana com almoços que viram lembranças.</p>
+        <a href="#reservar" class="exp-card-link">Ver cardápio &rarr;</a>
       </div>
     </div>
-  </section>
+    <div class="exp-card">
+      <div class="exp-card-img">🍇</div>
+      <div class="exp-card-body">
+        <div class="exp-card-tag">Enologia</div>
+        <h3 class="exp-card-title">O Vinhedo</h3>
+        <p class="exp-card-desc">Caminhada entre as parreiras, história da produção local e degustação guiada ao entardecer. Uma experiência que conecta terra, sabor e tempo.</p>
+        <a href="#reservar" class="exp-card-link">Agendar tour &rarr;</a>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-card-img">🌄</div>
+      <div class="exp-card-body">
+        <div class="exp-card-tag">Hospedagem</div>
+        <h3 class="exp-card-title">A Pousada</h3>
+        <p class="exp-card-desc">Suítes com varanda, café da manhã com produtos da região e o silêncio da serra como trilha sonora. Perfeito para casais e pequenos grupos.</p>
+        <a href="#reservar" class="exp-card-link">Reservar suíte &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- GALERIA -->
-  <section class="section" id="galeria">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Galeria</span>
-        <h2>Imagens do Recanto</h2>
-        <p>Um vislumbre da beleza que aguarda por você.</p>
+<!-- PACKAGES -->
+<section id="pacotes">
+  <div class="packages-section">
+    <div class="pkg-header">
+      <div class="section-tag">Pacotes</div>
+      <h2 class="section-title">Escolha sua <em>experiência</em></h2>
+      <p class="section-desc">Pacotes pensados para quem quer aproveitar tudo — sem pressa e sem preocupação.</p>
+    </div>
+    <div class="pkg-grid">
+      <!-- Pacote 1 -->
+      <div class="pkg-card">
+        <span class="pkg-emoji">🍇</span>
+        <div class="pkg-name">Brasa & Vinho</div>
+        <div class="pkg-tagline">"Da uva à taça, da taça à brasa"</div>
+        <ul class="pkg-list">
+          <li>1 noite na pousada (sáb–dom)</li>
+          <li>1 almoço especial na parrilla</li>
+          <li>Harmonização com vinho</li>
+          <li>Tour pelo vinhedo ao entardecer</li>
+          <li>Café da manhã incluso</li>
+        </ul>
+        <a href="#reservar" class="pkg-cta">Reservar</a>
       </div>
-      <div class="gallery-grid">
-        <div class="gallery-item g-large" style="--hue:120">
-          <div class="gallery-placeholder">
-            <span>🌿</span>
-            <p>Cerrado nativo ao amanhecer</p>
-          </div>
-        </div>
-        <div class="gallery-item" style="--hue:90">
-          <div class="gallery-placeholder">
-            <span>🐦</span>
-            <p>Seriema em campo aberto</p>
-          </div>
-        </div>
-        <div class="gallery-item" style="--hue:150">
-          <div class="gallery-placeholder">
-            <span>🌸</span>
-            <p>Flora do cerrado</p>
-          </div>
-        </div>
-        <div class="gallery-item" style="--hue:60">
-          <div class="gallery-placeholder">
-            <span>🌅</span>
-            <p>Pôr do sol no recanto</p>
-          </div>
-        </div>
-        <div class="gallery-item" style="--hue:100">
-          <div class="gallery-placeholder">
-            <span>🦎</span>
-            <p>Fauna local</p>
-          </div>
-        </div>
-        <div class="gallery-item g-large" style="--hue:75">
-          <div class="gallery-placeholder">
-            <span>🥾</span>
-            <p>Trilha ecológica principal</p>
-          </div>
-        </div>
+      <!-- Pacote 2 — Featured -->
+      <div class="pkg-card featured">
+        <span class="pkg-emoji">🔥</span>
+        <div class="pkg-name">Série Completa</div>
+        <div class="pkg-tagline">"A experiência inteira, do começo ao fim"</div>
+        <ul class="pkg-list">
+          <li>2 noites na pousada (sex–dom)</li>
+          <li>2 almoços na parrilla de lenha</li>
+          <li>Degustação de vinho dos vinhedos</li>
+          <li>Tour guiado pelo vinhedo</li>
+          <li>Café da manhã incluso</li>
+          <li>Acesso livre à propriedade</li>
+        </ul>
+        <a href="#reservar" class="pkg-cta">Reservar</a>
+      </div>
+      <!-- Pacote 3 -->
+      <div class="pkg-card">
+        <span class="pkg-emoji">☕</span>
+        <div class="pkg-name">Escape Rápido</div>
+        <div class="pkg-tagline">"Uma pausa que muda a semana"</div>
+        <ul class="pkg-list">
+          <li>1 noite na pousada</li>
+          <li>Café da manhã completo</li>
+          <li>Acesso às trilhas e redes</li>
+          <li>Late checkout até 14h</li>
+        </ul>
+        <a href="#reservar" class="pkg-cta">Reservar</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- COMO CHEGAR -->
-  <section class="section section-alt" id="como-chegar">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Localização</span>
-        <h2>Como Chegar</h2>
+<!-- GALLERY -->
+<section class="gallery-section" id="galeria">
+  <div class="gallery-header">
+    <div class="section-tag">Galeria</div>
+    <h2 class="section-title">Paisagens que<br><em>renovam</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="g-item">🔥<span class="g-label">Parrilla Noturna</span></div>
+    <div class="g-item">🍇<span class="g-label">Vinhedo</span></div>
+    <div class="g-item">🌅<span class="g-label">Pôr do Sol</span></div>
+    <div class="g-item">☕<span class="g-label">Café da Manhã</span></div>
+    <div class="g-item">🏡<span class="g-label">Suítes</span></div>
+    <div class="g-item">🌿<span class="g-label">Trilhas & Natureza</span></div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+  <div class="testimonial-quote">
+    O melhor fim de semana que tivemos em anos. A parrilla é inesquecível, o vinhedo surpreende, e o silêncio da serra cura qualquer paulistano cansado.
+  </div>
+  <div class="testimonial-author">— Hóspedes via Airbnb</div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="localizacao">
+  <div class="loc-wrap">
+    <div class="loc-map">
+      <div class="loc-map-placeholder">
+        <div class="pin">📍</div>
+        <p>São Pedro, SP<br>Serra do Itaqueri</p>
+        <p style="margin-top:12px; font-size:12px; color:var(--terracotta)">Clique para abrir no Google Maps</p>
       </div>
-      <div class="location-grid">
-        <div class="location-info">
-          <div class="location-item">
-            <div class="location-icon">📍</div>
-            <div>
-              <h3>Endereço</h3>
-              <p>Zona Rural — Recanto das Seriemas<br />Estrada da Seriema, km 12<br />Minas Gerais, Brasil</p>
-            </div>
-          </div>
-          <div class="location-item">
-            <div class="location-icon">🚗</div>
-            <div>
-              <h3>De carro</h3>
-              <p>Acesso pela rodovia estadual. Siga as placas indicativas a partir do centro da cidade mais próxima.
-                 A estrada de terra percorre 12 km em bom estado.</p>
-            </div>
-          </div>
-          <div class="location-item">
-            <div class="location-icon">🕐</div>
-            <div>
-              <h3>Horário de visita</h3>
-              <p>Terça a domingo, das 7h às 18h.<br />Reservas antecipadas recomendadas para grupos.</p>
-            </div>
-          </div>
-          <div class="location-item">
-            <div class="location-icon">💰</div>
-            <div>
-              <h3>Ingressos</h3>
-              <p>Adultos: R$ 30 | Crianças (até 12 anos): R$ 15<br />Grupos a partir de 10 pessoas têm desconto especial.</p>
-            </div>
+    </div>
+    <div>
+      <div class="section-tag">Localização</div>
+      <h2 class="section-title">Perto o bastante<br>para <em>escapar</em></h2>
+      <p class="section-desc" style="margin-bottom: 36px;">Na Serra do Itaqueri, entre São Pedro e Brotas — a menos de 2 horas de São Paulo pela Bandeirantes.</p>
+      <div class="loc-details">
+        <div class="loc-item">
+          <div class="loc-icon">🚗</div>
+          <div>
+            <h4>De São Paulo</h4>
+            <p>~180 km pela Rod. dos Bandeirantes. Aproximadamente 2h de viagem.</p>
           </div>
         </div>
-        <div class="map-placeholder">
-          <div class="map-inner">
-            <span>🗺️</span>
-            <p>Mapa em breve</p>
-            <small>Entre em contato para coordenadas detalhadas</small>
+        <div class="loc-item">
+          <div class="loc-icon">🏔️</div>
+          <div>
+            <h4>Na região</h4>
+            <p>Próximo a Brotas, Águas de São Pedro e São Pedro — destinos consolidados de ecoturismo.</p>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">📱</div>
+          <div>
+            <h4>Referências</h4>
+            <p>Serra do Itaqueri, interior paulista. Enviaremos o pin exato por WhatsApp após a reserva.</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTATO -->
-  <section class="section" id="contato">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Fale conosco</span>
-        <h2>Contato</h2>
-        <p>Tem dúvidas ou quer fazer uma reserva? Entre em contato conosco.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div>
-              <h3>Telefone / WhatsApp</h3>
-              <p>(XX) 9 XXXX-XXXX</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div>
-              <h3>E-mail</h3>
-              <p>contato@recantodaseriemas.com.br</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📸</div>
-            <div>
-              <h3>Instagram</h3>
-              <p>@recantodaseriemas</p>
-            </div>
-          </div>
-        </div>
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="name">Nome</label>
-            <input type="text" id="name" name="name" placeholder="Seu nome completo" required />
-          </div>
-          <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="seu@email.com" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Mensagem</label>
-            <textarea id="message" name="message" rows="5" placeholder="Como podemos ajudar?" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">Enviar Mensagem</button>
-          <p class="form-notice" id="formNotice"></p>
-        </form>
-      </div>
-    </div>
-  </section>
+<!-- CTA BAND -->
+<section class="cta-band" id="reservar">
+  <div class="cta-inner">
+    <div class="section-tag">Pronto para vir?</div>
+    <h2 class="section-title">Reserve pelo <em>WhatsApp</em></h2>
+    <p class="section-desc">Atendimento direto, sem intermediários. Tire dúvidas, escolha seu pacote e garanta seu fim de semana no Recanto.</p>
+    <a href="https://wa.me/5500000000000" class="cta-whatsapp" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.34 0-4.508-.646-6.374-1.766l-.444-.271-3.065 1.028 1.028-3.065-.271-.444A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-container">
-      <div class="footer-brand">
-        <span class="logo-icon">🐦</span>
-        <span class="logo-text">Recanto das Seriemas</span>
-        <p>Um refúgio de natureza e biodiversidade.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#sobre">Sobre</a>
-        <a href="#atracoes">Atrações</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#como-chegar">Como Chegar</a>
-        <a href="#contato">Contato</a>
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Recanto das <span>Seriemas</span></div>
+      <p class="footer-tagline">Pousada, parrilla e vinhedo na Serra do Itaqueri. Onde o interior paulista vira experiência.</p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Recanto das Seriemas. Todos os direitos reservados.</p>
+    <div class="footer-col">
+      <h5>Navegação</h5>
+      <a href="#sobre">Sobre</a>
+      <a href="#experiencias">Experiências</a>
+      <a href="#pacotes">Pacotes</a>
+      <a href="#galeria">Galeria</a>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h5>Experiências</h5>
+      <a href="#experiencias">A Parrilla</a>
+      <a href="#experiencias">O Vinhedo</a>
+      <a href="#experiencias">A Pousada</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <a href="#reservar">WhatsApp</a>
+      <a href="https://instagram.com/seriemasparrilla" target="_blank">Instagram</a>
+      <a href="#localizacao">Como chegar</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Recanto das Seriemas. Todos os direitos reservados.</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/seriemasparrilla" target="_blank" title="Instagram">📷</a>
+      <a href="https://wa.me/5500000000000" target="_blank" title="WhatsApp">💬</a>
+    </div>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile nav
+function toggleMobile() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// Smooth reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.exp-card, .pkg-card, .g-item, .about-feat, .loc-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'all 0.7s cubic-bezier(0.22, 1, 0.36, 1)';
+  observer.observe(el);
+});
+</script>
 </body>
 </html>
