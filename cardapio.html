@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardápio — Recanto das Seriemas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF6F0; --warm-white: #FFFDF9; --sand: #E8DFD0;
+  --terracotta: #B85C3A; --terracotta-light: #D4845F;
+  --olive: #5C6B4F; --charcoal: #2C2825; --warm-gray: #8A8078;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--cream); color:var(--charcoal); font-family:'DM Sans',sans-serif; }
+.back { position:fixed; top:24px; left:24px; z-index:10;
+  background:var(--terracotta); color:#fff; text-decoration:none;
+  padding:10px 20px; border-radius:100px; font-size:13px; font-weight:500;
+  letter-spacing:1px; transition:.3s; }
+.back:hover { background:var(--terracotta-light); }
+header { text-align:center; padding:80px 24px 40px; }
+.tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--terracotta); font-weight:500; margin-bottom:12px; }
+h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,52px); font-weight:400; margin-bottom:12px; }
+h1 em { font-style:italic; color:var(--terracotta); }
+.sub { color:var(--warm-gray); font-size:15px; max-width:500px; margin:0 auto; line-height:1.6; }
+.menu-images { max-width:900px; margin:0 auto; padding:0 24px 60px; display:flex; flex-direction:column; gap:32px; }
+.menu-img { width:100%; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,.1); }
+.cta-section { text-align:center; padding:40px 24px 80px; }
+.cta-btn { display:inline-block; background:var(--terracotta); color:#fff;
+  padding:16px 40px; border-radius:100px; text-decoration:none;
+  font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  transition:.3s; }
+.cta-btn:hover { background:var(--terracotta-light); }
+.note { color:var(--warm-gray); font-size:13px; margin-top:16px; }
+footer { background:var(--charcoal); color:rgba(255,255,255,.5); text-align:center;
+  padding:32px 24px; font-size:12px; }
+footer a { color:var(--terracotta-light); text-decoration:none; }
+</style>
+</head>
+<body>
+<a href="index.html" class="back">&larr; Voltar</a>
+<header>
+  <div class="tag">Parrilla de Lenha</div>
+  <h1>Nosso <em>Cardápio</em></h1>
+  <p class="sub">Cortes nobres na brasa, entradas artesanais, sobremesas na parrilla e produtos para levar. Aberto aos fins de semana — reserva recomendada.</p>
+</header>
+<div class="menu-images">
+  <img src="images/property/cardapio-frente.jpg" alt="Cardápio Recanto das Seriemas — Parrilla, entradas, porções e bebidas" class="menu-img">
+  <img src="images/property/cardapio-verso.jpg" alt="Cardápio Recanto das Seriemas — Cervejas, sobremesas e produtos para levar" class="menu-img">
+</div>
+<div class="cta-section">
+  <a href="https://wa.me/5511991124853" class="cta-btn">Reservar pelo WhatsApp</a>
+  <p class="note">Preços e itens sujeitos a alteração. Atualizado em março/2026.</p>
+</div>
+<footer>
+  <p>Recanto das Seriemas &middot; São Pedro, SP &middot; Serra do Itaqueri</p>
+  <p style="margin-top:8px"><a href="https://instagram.com/seriemasparrilla">@seriemasparrilla</a></p>
+</footer>
+</body>
+</html>
