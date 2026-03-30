@@ -254,10 +254,11 @@ section { padding: 120px 40px; }
   height: 240px;
   display: flex; align-items: center; justify-content: center;
   font-size: 64px; position: relative;
+  background-size: cover; background-position: center;
 }
-.exp-card:nth-child(1) .exp-card-img { background: linear-gradient(135deg, #F2E0D0, #E8CCBB); }
-.exp-card:nth-child(2) .exp-card-img { background: linear-gradient(135deg, #D5DDCC, #C4D0B8); }
-.exp-card:nth-child(3) .exp-card-img { background: linear-gradient(135deg, #E6D8E8, #D8C6DC); }
+.exp-card:nth-child(1) .exp-card-img { background-image: url('images/shared/cafe-manha.jpg'); }
+.exp-card:nth-child(2) .exp-card-img { background-image: url('images/suites/s4-cover.jpg'); }
+.exp-card:nth-child(3) .exp-card-img { background-image: url('images/suites/s1-interior.jpg'); }
 .exp-card-body { padding: 28px 28px 32px; }
 .exp-card-tag {
   font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
@@ -577,8 +578,7 @@ footer {
 <section id="sobre">
   <div class="about-strip">
     <div class="about-visual">
-      <div class="about-img">
-        <div class="about-img-inner">🏡</div>
+      <div class="about-img" style="background:url('images/property/area-externa.jpg') center/cover no-repeat">
       </div>
       <div class="about-badge">
         <div class="about-badge-num">5★</div>
@@ -632,7 +632,7 @@ footer {
   </div>
   <div class="exp-grid">
     <div class="exp-card">
-      <div class="exp-card-img">🔥</div>
+      <div class="exp-card-img"></div>
       <div class="exp-card-body">
         <div class="exp-card-tag">Gastronomia</div>
         <h3 class="exp-card-title">A Parrilla</h3>
@@ -641,16 +641,16 @@ footer {
       </div>
     </div>
     <div class="exp-card">
-      <div class="exp-card-img">🍇</div>
+      <div class="exp-card-img"></div>
       <div class="exp-card-body">
         <div class="exp-card-tag">Enologia</div>
         <h3 class="exp-card-title">O Vinhedo</h3>
-        <p class="exp-card-desc">Caminhada entre as parreiras, história da produção local e degustação guiada ao entardecer. Uma experiência que conecta terra, sabor e tempo.</p>
+        <p class="exp-card-desc">Caminhada entre as parreiras e a história de um vinhedo em formação. O vinhedo ainda está crescendo — venha acompanhar. Piquenique e passeio guiado disponíveis já.</p>
         <a href="#reservar" class="exp-card-link">Agendar tour &rarr;</a>
       </div>
     </div>
     <div class="exp-card">
-      <div class="exp-card-img">🌄</div>
+      <div class="exp-card-img"></div>
       <div class="exp-card-body">
         <div class="exp-card-tag">Hospedagem</div>
         <h3 class="exp-card-title">A Pousada</h3>
@@ -724,9 +724,9 @@ footer {
   </div>
   <div class="gallery-grid">
     <div class="g-item" style="background:url('images/suites/s1-cover.jpg') center/cover"><span class="g-label">Vista do Vale</span></div>
-    <div class="g-item" style="background:url('images/suites/s4-cover.jpg') center/cover"><span class="g-label">Vinhedo</span></div>
+    <div class="g-item" style="background:url('images/property/vinhedo-vista.jpg') center/cover"><span class="g-label">Vinhedo</span></div>
     <div class="g-item" style="background:url('images/property/piscina.jpg') center/cover"><span class="g-label">Piscina</span></div>
-    <div class="g-item" style="background:url('images/shared/cafe-manha.jpg') center/cover"><span class="g-label">Café da Manhã</span></div>
+    <div class="g-item" style="background:url('images/shared/cafe-manha.jpg') center top/cover"><span class="g-label">Café da Manhã</span></div>
     <div class="g-item" style="background:url('images/suites/s3-interior.jpg') center/cover"><span class="g-label">Suítes</span></div>
     <div class="g-item" style="background:url('images/property/gramado-arvore.jpg') center/cover"><span class="g-label">Gramado &amp; Natureza</span></div>
   </div>
@@ -745,22 +745,20 @@ footer {
 <section class="location-section" id="localizacao">
   <div class="loc-wrap">
     <div class="loc-map">
-      <div class="loc-map-placeholder">
-        <div class="pin">📍</div>
-        <p>São Pedro, SP<br>Serra do Itaqueri</p>
-        <p style="margin-top:12px; font-size:12px; color:var(--terracotta)">Clique para abrir no Google Maps</p>
+      <div class="loc-map-placeholder" style="padding:0;overflow:hidden;border-radius:16px">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.5!2d-47.88!3d-22.57!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM0JzEyLjAiUyA0N8KwNTInNDguMCJX!5e0!3m2!1spt-BR!2sbr!4v1" width="100%" height="100%" style="border:0;min-height:300px" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
     <div>
       <div class="section-tag">Localização</div>
       <h2 class="section-title">Perto o bastante<br>para <em>escapar</em></h2>
-      <p class="section-desc" style="margin-bottom: 36px;">Na Serra do Itaqueri, entre São Pedro e Brotas — a menos de 2 horas de São Paulo pela Bandeirantes.</p>
+      <p class="section-desc" style="margin-bottom: 36px;">Na Serra do Itaqueri, entre São Pedro e Brotas — no coração do estado de São Paulo.</p>
       <div class="loc-details">
         <div class="loc-item">
           <div class="loc-icon">🚗</div>
           <div>
-            <h4>De São Paulo</h4>
-            <p>~180 km pela Rod. dos Bandeirantes. Aproximadamente 2h de viagem.</p>
+            <h4>Acesso fácil</h4>
+            <p>A menos de 2h de Campinas, Ribeirão Preto, São Carlos, Sorocaba e São Paulo capital.</p>
           </div>
         </div>
         <div class="loc-item">
