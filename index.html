@@ -256,7 +256,7 @@ section { padding: 120px 40px; }
   font-size: 64px; position: relative;
   background-size: cover; background-position: center;
 }
-.exp-card:nth-child(1) .exp-card-img { background-image: url('images/property/parrilla.jpg'); }
+.exp-card:nth-child(1) .exp-card-img { background-image: url('images/food/combo-prato.jpg'); }
 .exp-card:nth-child(2) .exp-card-img { background-image: url('images/suites/s4-cover.jpg'); }
 .exp-card:nth-child(3) .exp-card-img { background-image: url('images/suites/s1-interior.jpg'); }
 .exp-card-body { padding: 28px 28px 32px; }
@@ -344,7 +344,7 @@ section { padding: 120px 40px; }
 .gallery-grid {
   display: grid; max-width: 1200px; margin: 0 auto;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 260px 260px;
+  grid-template-rows: 260px 260px 260px;
   gap: 16px;
 }
 .g-item {
@@ -363,6 +363,8 @@ section { padding: 120px 40px; }
 .g-item:hover::after { opacity: 1; }
 .g-item:nth-child(1) { grid-column: span 2; }
 .g-item:nth-child(6) { grid-column: span 2; }
+.g-item:nth-child(7) { grid-column: span 2; }
+.g-item:nth-child(10) { grid-column: span 2; }
 .g-label {
   position: absolute; bottom: 16px; left: 20px;
   color: #fff; font-size: 13px; font-weight: 500;
@@ -515,7 +517,7 @@ footer {
   .exp-grid, .pkg-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .about-strip { flex-direction: column; gap: 48px; }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .g-item:nth-child(1), .g-item:nth-child(6) { grid-column: span 2; }
+  .g-item:nth-child(1), .g-item:nth-child(6), .g-item:nth-child(7), .g-item:nth-child(10) { grid-column: span 2; }
   .loc-wrap { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr 1fr; }
 }
@@ -527,7 +529,7 @@ footer {
   .hero-btns { flex-direction: column; align-items: center; }
   .about-features { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr; }
-  .g-item:nth-child(1), .g-item:nth-child(6) { grid-column: span 1; }
+  .g-item:nth-child(1), .g-item:nth-child(6), .g-item:nth-child(7), .g-item:nth-child(10) { grid-column: span 1; }
   .gallery-grid .g-item { height: 200px; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -584,7 +586,7 @@ footer {
 <section id="sobre">
   <div class="about-strip">
     <div class="about-visual">
-      <div class="about-img" style="background:url('images/property/area-externa.jpg') center/cover no-repeat">
+      <div class="about-img" style="background:url('images/food/mesa-ar-livre.jpg') center/cover no-repeat">
       </div>
       <div class="about-badge">
         <div class="about-badge-num">5★</div>
@@ -729,11 +731,15 @@ footer {
     <h2 class="section-title">Paisagens que<br><em>renovam</em></h2>
   </div>
   <div class="gallery-grid">
-    <div class="g-item" style="background:url('images/suites/s1-cover.jpg') center/cover"><span class="g-label">Vista do Vale</span></div>
+    <div class="g-item" style="background:url('images/food/combo-prato.jpg') center/cover"><span class="g-label">Combo da Parrilla</span></div>
     <div class="g-item" style="background:url('images/property/vinhedo-vista.jpg') center/cover"><span class="g-label">Vinhedo</span></div>
-    <div class="g-item" style="background:url('images/property/piscina.jpg') center/cover"><span class="g-label">Piscina</span></div>
+    <div class="g-item" style="background:url('images/food/chorizo-batata.jpg') center/cover"><span class="g-label">Chorizo &amp; Batata Seriema</span></div>
     <div class="g-item" style="background:url('images/shared/cafe-manha.jpg') center top/cover"><span class="g-label">Café da Manhã</span></div>
-    <div class="g-item" style="background:url('images/suites/s3-interior.jpg') center/cover"><span class="g-label">Suítes</span></div>
+    <div class="g-item" style="background:url('images/food/queijo-geleia.jpg') center/cover"><span class="g-label">Queijo Artesanal</span></div>
+    <div class="g-item" style="background:url('images/food/mesa-ar-livre.jpg') center/cover"><span class="g-label">Mesa ao Ar Livre</span></div>
+    <div class="g-item" style="background:url('images/suites/s1-cover.jpg') center/cover"><span class="g-label">Vista do Vale</span></div>
+    <div class="g-item" style="background:url('images/food/grelha-cortes.jpg') center/cover"><span class="g-label">Cortes na Brasa</span></div>
+    <div class="g-item" style="background:url('images/property/piscina.jpg') center/cover"><span class="g-label">Piscina</span></div>
     <div class="g-item" style="background:url('images/property/gramado-arvore.jpg') center/cover"><span class="g-label">Gramado &amp; Natureza</span></div>
   </div>
   <div style="text-align:center; margin-top:48px;">
