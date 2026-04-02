@@ -363,13 +363,9 @@ section { padding: 120px 40px; }
 .exp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(44,40,37,0.08); }
 .exp-card-img {
   height: 240px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 64px; position: relative;
-  background-size: cover; background-position: center;
+  overflow: hidden; position: relative;
 }
-.exp-card:nth-child(1) .exp-card-img { background-image: url('images/food/combo-prato.jpg'); }
-.exp-card:nth-child(2) .exp-card-img { background-image: url('images/suites/s4-cover.jpg'); }
-.exp-card:nth-child(3) .exp-card-img { background-image: url('images/suites/suite-wide-angle.jpg'); }
+.exp-card-img img { width:100%; height:100%; object-fit:cover; display:block; }
 .exp-card-body { padding: 28px 28px 32px; }
 .exp-card-tag {
   font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
@@ -463,8 +459,8 @@ section { padding: 120px 40px; }
   display: flex; align-items: center; justify-content: center;
   font-size: 48px; position: relative;
   transition: all 0.5s; cursor: pointer;
-  background-size: cover; background-position: center;
 }
+.g-item img { width:100%; height:100%; object-fit:cover; display:block; }
 .g-item:hover { transform: scale(1.02); }
 .g-item::after {
   content: ''; position: absolute; inset: 0;
@@ -697,7 +693,8 @@ footer {
 <section id="sobre">
   <div class="about-strip">
     <div class="about-visual">
-      <div class="about-img" style="background:url('images/food/mesa-ar-livre.jpg') center/cover no-repeat">
+      <div class="about-img">
+        <img src="images/food/mesa-ar-livre.jpg" alt="Almoço ao ar livre na parrilla do Recanto das Seriemas com vista para o vale da Serra do Itaqueri" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px">
       </div>
       <div class="about-badge">
         <div class="about-badge-num">5★</div>
@@ -746,12 +743,12 @@ footer {
 <section class="experiences-bg" id="experiencias">
   <div class="exp-header">
     <div class="section-tag">Experiências</div>
-    <h2 class="section-title">Três formas de<br>viver o <em>Recanto</em></h2>
+    <h2 class="section-title">Parrilla, vinhedo<br>e pousada no <em>interior paulista</em></h2>
     <p class="section-desc">Cada visita conta uma história diferente. Escolha a sua — ou viva todas.</p>
   </div>
   <div class="exp-grid">
     <div class="exp-card">
-      <div class="exp-card-img"></div>
+      <div class="exp-card-img"><img src="images/food/combo-prato.jpg" alt="Combo de parrilla de lenha com cortes nobres e legumes grelhados — restaurante Seriemas Parrilla em São Pedro SP" loading="lazy"></div>
       <div class="exp-card-body">
         <div class="exp-card-tag">Gastronomia</div>
         <h3 class="exp-card-title">A Parrilla</h3>
@@ -760,7 +757,7 @@ footer {
       </div>
     </div>
     <div class="exp-card">
-      <div class="exp-card-img"></div>
+      <div class="exp-card-img"><img src="images/suites/s4-cover.jpg" alt="Vinhedo em formação com vista panorâmica do vale — Recanto das Seriemas, Serra do Itaqueri" loading="lazy"></div>
       <div class="exp-card-body">
         <div class="exp-card-tag">Enologia</div>
         <h3 class="exp-card-title">O Vinhedo</h3>
@@ -769,7 +766,7 @@ footer {
       </div>
     </div>
     <div class="exp-card">
-      <div class="exp-card-img"></div>
+      <div class="exp-card-img"><img src="images/suites/suite-wide-angle.jpg" alt="Suíte com cama de casal, frigobar e janela com vista para a serra — pousada em São Pedro SP" loading="lazy"></div>
       <div class="exp-card-body">
         <div class="exp-card-tag">Hospedagem</div>
         <h3 class="exp-card-title">A Pousada</h3>
@@ -785,7 +782,7 @@ footer {
   <div class="packages-section">
     <div class="pkg-header">
       <div class="section-tag">Pacotes</div>
-      <h2 class="section-title">Escolha sua <em>experiência</em></h2>
+      <h2 class="section-title">Pacotes de hospedagem e <em>gastronomia</em></h2>
       <p class="section-desc">Pacotes pensados para quem quer aproveitar tudo — sem pressa e sem preocupação.</p>
     </div>
     <div class="pkg-grid">
@@ -839,19 +836,19 @@ footer {
 <section class="gallery-section" id="galeria">
   <div class="gallery-header">
     <div class="section-tag">Galeria</div>
-    <h2 class="section-title">Paisagens que<br><em>renovam</em></h2>
+    <h2 class="section-title">Galeria do<br><em>Recanto das Seriemas</em></h2>
   </div>
   <div class="gallery-grid">
-    <div class="g-item" role="img" aria-label="Combo de parrilla com cortes nobres, linguiça e legumes grelhados no Recanto das Seriemas" style="background:url('images/food/combo-prato.jpg') center/cover"><span class="g-label">Combo da Parrilla</span></div>
-    <div class="g-item" role="img" aria-label="Provolone com cogumelos e vinho branco com vista da piscina" style="background:url('images/food/cogumelos-vinho-piscina.jpg') center/cover"><span class="g-label">Provolone &amp; Vinho</span></div>
-    <div class="g-item" role="img" aria-label="Bife de chorizo com batata seriema na parrilla de lenha" style="background:url('images/food/chorizo-batata.jpg') center/cover"><span class="g-label">Chorizo &amp; Batata Seriema</span></div>
-    <div class="g-item" role="img" aria-label="Café da manhã artesanal com pão, queijo fresco e vista da piscina na Serra do Itaqueri" style="background:url('images/shared/cafe-manha.jpg') center top/cover"><span class="g-label">Café da Manhã</span></div>
-    <div class="g-item" role="img" aria-label="Queijo fresco artesanal produzido no Recanto das Seriemas com geleia caseira" style="background:url('images/food/queijo-geleia.jpg') center/cover"><span class="g-label">Queijo Artesanal</span></div>
-    <div class="g-item" role="img" aria-label="Pôr do sol na piscina do Recanto das Seriemas em São Pedro SP" style="background:url('images/property/por-do-sol-piscina.jpg') center/cover"><span class="g-label">Pôr do Sol</span></div>
-    <div class="g-item" role="img" aria-label="Bife ancho empratado com batata seriema, arroz e farofa" style="background:url('images/food/prato-empratado.jpg') center/cover"><span class="g-label">Bife Ancho Empratado</span></div>
-    <div class="g-item" role="img" aria-label="Cortes nobres de carne na grelha da parrilla de lenha com brasas" style="background:url('images/food/grelha-cortes.jpg') center/cover"><span class="g-label">Cortes na Brasa</span></div>
-    <div class="g-item" role="img" aria-label="Taças de vinho branco ao pôr do sol na beira da piscina" style="background:url('images/food/vinho-por-do-sol.jpg') center/cover"><span class="g-label">Vinho &amp; Pôr do Sol</span></div>
-    <div class="g-item" role="img" aria-label="Gramado com árvore centenária e vista panorâmica do vale na Serra do Itaqueri" style="background:url('images/property/gramado-arvore.jpg') center/cover"><span class="g-label">Gramado &amp; Natureza</span></div>
+    <div class="g-item"><img src="images/food/combo-prato.jpg" alt="Combo de parrilla com cortes nobres, linguiça e legumes grelhados — Recanto das Seriemas, São Pedro SP" loading="lazy"><span class="g-label">Combo da Parrilla</span></div>
+    <div class="g-item"><img src="images/food/cogumelos-vinho-piscina.jpg" alt="Provolone com cogumelos e vinho branco com vista da piscina na Serra do Itaqueri" loading="lazy"><span class="g-label">Provolone &amp; Vinho</span></div>
+    <div class="g-item"><img src="images/food/chorizo-batata.jpg" alt="Bife de chorizo com batata seriema na parrilla de lenha em São Pedro" loading="lazy"><span class="g-label">Chorizo &amp; Batata Seriema</span></div>
+    <div class="g-item"><img src="images/shared/cafe-manha.jpg" alt="Café da manhã artesanal com pão de fermentação natural, queijo fresco e vista da piscina" loading="lazy" style="object-position:center top"><span class="g-label">Café da Manhã</span></div>
+    <div class="g-item"><img src="images/food/queijo-geleia.jpg" alt="Queijo fresco artesanal produzido no Recanto das Seriemas com geleia caseira e pão" loading="lazy"><span class="g-label">Queijo Artesanal</span></div>
+    <div class="g-item"><img src="images/property/por-do-sol-piscina.jpg" alt="Pôr do sol na piscina do Recanto das Seriemas — pousada em São Pedro SP" loading="lazy"><span class="g-label">Pôr do Sol</span></div>
+    <div class="g-item"><img src="images/food/prato-empratado.jpg" alt="Bife ancho empratado com batata seriema, arroz e farofa — parrilla de lenha" loading="lazy"><span class="g-label">Bife Ancho Empratado</span></div>
+    <div class="g-item"><img src="images/food/grelha-cortes.jpg" alt="Cortes nobres de carne na grelha da parrilla de lenha com fogo e brasas" loading="lazy"><span class="g-label">Cortes na Brasa</span></div>
+    <div class="g-item"><img src="images/food/vinho-por-do-sol.jpg" alt="Taças de vinho branco ao pôr do sol na beira da piscina — Serra do Itaqueri" loading="lazy"><span class="g-label">Vinho &amp; Pôr do Sol</span></div>
+    <div class="g-item"><img src="images/property/gramado-arvore.jpg" alt="Gramado com árvore centenária e vista panorâmica do vale na Serra do Itaqueri, São Pedro" loading="lazy"><span class="g-label">Gramado &amp; Natureza</span></div>
   </div>
   <div style="text-align:center; margin-top:48px;">
     <a href="https://instagram.com/seriemasparrilla" target="_blank" style="display:inline-flex; align-items:center; gap:10px; color:var(--terracotta); text-decoration:none; font-size:15px; font-weight:500; letter-spacing:0.5px; transition:opacity 0.3s;">
@@ -877,7 +874,7 @@ footer {
     </div>
     <div>
       <div class="section-tag">Localização</div>
-      <h2 class="section-title">Perto o bastante<br>para <em>escapar</em></h2>
+      <h2 class="section-title">São Pedro SP<br><em>Serra do Itaqueri</em></h2>
       <p class="section-desc" style="margin-bottom: 36px;">Na Serra do Itaqueri, entre São Pedro e Brotas — no coração do estado de São Paulo.</p>
       <div class="loc-details">
         <div class="loc-item">
