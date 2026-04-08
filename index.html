@@ -501,6 +501,7 @@ section { padding: 120px 40px; }
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(44,40,37,0.5) 0%, transparent 60%);
   opacity: 1; transition: opacity 0.4s;
+  pointer-events: none;
 }
 .g-item:hover::after { opacity: 1; }
 .g-item:nth-child(1) { grid-column: span 2; }
@@ -513,6 +514,7 @@ section { padding: 120px 40px; }
   letter-spacing: 1px; z-index: 2;
   opacity: 1; transform: translateY(0);
   transition: all 0.4s;
+  pointer-events: none;
 }
 
 /* ── TESTIMONIAL ── */
@@ -1190,7 +1192,17 @@ let lbIndex = 0;
 document.querySelectorAll('.g-item img, .exp-card-img img, .about-img img').forEach((img, i) => {
   lbImages.push({ src: img.src, alt: img.alt });
   img.style.cursor = 'zoom-in';
-  img.addEventListener('click', () => openLightbox(i));
+  img.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(i); });
+});
+// Also bind g-item containers
+document.querySelectorAll('.g-item').forEach(item => {
+  const img = item.querySelector('img');
+  if (!img) return;
+  item.style.cursor = 'zoom-in';
+  item.addEventListener('click', () => {
+    const idx = lbImages.findIndex(lb => lb.src === img.src);
+    if (idx >= 0) openLightbox(idx);
+  });
 });
 
 function openLightbox(i) {
