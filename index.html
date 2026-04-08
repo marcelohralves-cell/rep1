@@ -115,6 +115,41 @@
 }
 </script>
 
+<!-- Structured Data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "A parrilla funciona em quais dias?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A parrilla de lenha funciona aos sábados e domingos, das 12h às 16h. Almoços em outros dias podem ser organizados sob consulta para hóspedes."}
+    },
+    {
+      "@type": "Question",
+      "name": "Onde fica o Recanto das Seriemas?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Na Serra do Itaqueri, São Pedro SP, a 990 metros de altitude. Fica a 15 minutos de Brotas e a menos de 2 horas de São Paulo, Campinas, Ribeirão Preto e São Carlos."}
+    },
+    {
+      "@type": "Question",
+      "name": "O vinhedo já produz vinho?",
+      "acceptedAnswer": {"@type": "Answer", "text": "O vinhedo tem menos de 2 anos e ainda está em formação. As experiências de degustação utilizam vinhos selecionados e curados, harmonizados com nosso queijo artesanal e pão de fermentação natural feitos na propriedade."}
+    },
+    {
+      "@type": "Question",
+      "name": "Quais experiências estão disponíveis para visitantes?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Oferecemos Piquenique no Vinhedo (R$220/casal), Degustação Guiada com Harmonização (R$130/pessoa), Degustação ao Pôr do Sol (R$95/pessoa) e Mesa sob a Árvore Centenária (R$75/pessoa + parrilla). Todas com agendamento via WhatsApp."}
+    },
+    {
+      "@type": "Question",
+      "name": "Preciso ser hóspede para almoçar na parrilla?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Não. A parrilla é aberta ao público nos fins de semana. Recomendamos reserva antecipada pelo WhatsApp, pois as vagas são limitadas."}
+    }
+  ]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -451,7 +486,7 @@ section { padding: 120px 40px; }
 .gallery-grid {
   display: grid; max-width: 1200px; margin: 0 auto;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 260px 260px 260px;
+  grid-auto-rows: 260px;
   gap: 16px;
 }
 .g-item {
@@ -597,6 +632,40 @@ footer {
 }
 .footer-social a:hover { background: var(--terracotta); transform: scale(1.1); }
 
+/* ── FLOATING WHATSAPP ── */
+.whatsapp-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: all 0.3s; text-decoration: none;
+}
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+.whatsapp-float svg { width: 32px; height: 32px; }
+
+/* ── FAQ ── */
+.faq-section { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--sand); }
+.faq-question {
+  width: 100%; background: none; border: none; cursor: pointer;
+  padding: 24px 0; display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Playfair Display', serif; font-size: 18px; color: var(--charcoal);
+  text-align: left;
+}
+.faq-question::after { content: '+'; font-size: 24px; color: var(--terracotta); transition: transform 0.3s; }
+.faq-item.open .faq-question::after { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+  font-size: 15px; color: var(--warm-gray); line-height: 1.7;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer p { padding-bottom: 24px; }
+
+/* ── EXPERIENCES CARDS (with price) ── */
+.exp-price { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--terracotta); margin-bottom: 8px; }
+.exp-price small { font-size: 13px; color: var(--warm-gray); font-family: 'DM Sans', sans-serif; }
+
 /* ── MOBILE NAV OVERLAY ── */
 .mobile-nav {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -651,6 +720,7 @@ footer {
   <div class="nav-links">
     <a href="#sobre">Sobre</a>
     <a href="#experiencias">Experiências</a>
+    <a href="#atividades">Atividades</a>
     <a href="#pacotes">Pacotes</a>
     <a href="#galeria">Galeria</a>
     <a href="#localizacao">Localização</a>
@@ -666,6 +736,7 @@ footer {
   <button class="mobile-close" onclick="toggleMobile()">&times;</button>
   <a href="#sobre" onclick="toggleMobile()">Sobre</a>
   <a href="#experiencias" onclick="toggleMobile()">Experiências</a>
+  <a href="#atividades" onclick="toggleMobile()">Atividades</a>
   <a href="#pacotes" onclick="toggleMobile()">Pacotes</a>
   <a href="#galeria" onclick="toggleMobile()">Galeria</a>
   <a href="#localizacao" onclick="toggleMobile()">Localização</a>
@@ -777,6 +848,46 @@ footer {
   </div>
 </section>
 
+<!-- ATIVIDADES COM PREÇO -->
+<section style="background:var(--warm-white)" id="atividades">
+  <div style="max-width:1200px; margin:0 auto">
+    <div style="text-align:center; margin-bottom:64px">
+      <div class="section-tag">Atividades</div>
+      <h2 class="section-title">Experiências gastronômicas<br>na <em>Serra do Itaqueri</em></h2>
+      <p class="section-desc" style="margin:0 auto">Viva o Recanto além da hospedagem. Quatro experiências com agendamento via WhatsApp — abertas a hóspedes e visitantes.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:24px">
+      <div class="pkg-card">
+        <span class="pkg-emoji">🧺</span>
+        <div class="pkg-name">Piquenique no Vinhedo</div>
+        <div class="exp-price">R$220 <small>/casal</small></div>
+        <p style="font-size:14px; color:var(--warm-gray); line-height:1.7">Queijo artesanal, pão de fermentação natural e vinhos selecionados entre as vinhas com vista para o vale. Duração: ~2h.</p>
+      </div>
+      <div class="pkg-card">
+        <span class="pkg-emoji">🍷</span>
+        <div class="pkg-name">Degustação Guiada</div>
+        <div class="exp-price">R$130 <small>/pessoa</small></div>
+        <p style="font-size:14px; color:var(--warm-gray); line-height:1.7">Harmonização de vinhos curados com queijo fresco, geleias e pão artesanal — tudo produzido na propriedade.</p>
+      </div>
+      <div class="pkg-card">
+        <span class="pkg-emoji">🌅</span>
+        <div class="pkg-name">Degustação ao Pôr do Sol</div>
+        <div class="exp-price">R$95 <small>/pessoa</small></div>
+        <p style="font-size:14px; color:var(--warm-gray); line-height:1.7">Vinhos selecionados com petiscos artesanais enquanto o sol desaparece atrás da serra. Cenário incomparável.</p>
+      </div>
+      <div class="pkg-card">
+        <span class="pkg-emoji">🌳</span>
+        <div class="pkg-name">Mesa sob a Árvore Centenária</div>
+        <div class="exp-price">R$75 <small>/pessoa + parrilla</small></div>
+        <p style="font-size:14px; color:var(--warm-gray); line-height:1.7">Almoço ao ar livre sob a sombra da árvore centenária do Recanto, com vista panorâmica e parrilla completa.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px">
+      <a href="https://wa.me/5511991124853?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20experi%C3%AAncia" class="btn-primary" target="_blank">Agendar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
 <!-- PACKAGES -->
 <section id="pacotes">
   <div class="packages-section">
@@ -850,6 +961,10 @@ footer {
     <div class="g-item"><img src="images/property/casamento-arvore-centenaria.jpg" alt="Casamento sob a árvore centenária com vista panorâmica da serra — eventos no Recanto das Seriemas" loading="lazy"><span class="g-label">Celebrações</span></div>
     <div class="g-item"><img src="images/food/vinho-por-do-sol.jpg" alt="Taças de vinho branco ao pôr do sol na beira da piscina — Serra do Itaqueri" loading="lazy"><span class="g-label">Vinho &amp; Pôr do Sol</span></div>
     <div class="g-item"><img src="images/property/seriemas-sunset-suite.jpg" alt="Seriemas caminhando no gramado ao pôr do sol com suíte ao fundo — Recanto das Seriemas, Serra do Itaqueri" loading="lazy"><span class="g-label">O Pôr do Sol</span></div>
+    <div class="g-item"><img src="images/property/seriemas-gramado-sunset.jpg" alt="Seriemas passeando no gramado com pôr do sol ao fundo — fauna silvestre no Recanto das Seriemas" loading="lazy"><span class="g-label">Fauna & Campo</span></div>
+    <div class="g-item"><img src="images/food/pimentao-recheado-forno.jpg" alt="Pimentões recheados assados no forno a lenha da parrilla — Seriemas Parrilla, São Pedro SP" loading="lazy"><span class="g-label">Forno & Criatividade</span></div>
+    <div class="g-item"><img src="images/property/casamento-arvore-centenaria-2.jpg" alt="Cerimônia de casamento sob a árvore centenária com vista panorâmica — eventos no Recanto das Seriemas" loading="lazy"><span class="g-label">Eventos & Celebrações</span></div>
+    <div class="g-item"><img src="images/property/sunset-panoramico-golden.jpg" alt="Pôr do sol dourado com vista panorâmica do vale da Serra do Itaqueri — Recanto das Seriemas" loading="lazy"><span class="g-label">Golden Hour</span></div>
   </div>
   <div style="text-align:center; margin-top:48px;">
     <a href="https://instagram.com/seriemasparrilla" target="_blank" style="display:inline-flex; align-items:center; gap:10px; color:var(--terracotta); text-decoration:none; font-size:15px; font-weight:500; letter-spacing:0.5px; transition:opacity 0.3s;">
@@ -904,6 +1019,40 @@ footer {
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-section">
+    <div style="text-align:center; margin-bottom:56px">
+      <div class="section-tag">Perguntas Frequentes</div>
+      <h2 class="section-title">Tudo sobre o <em>Recanto</em></h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">A parrilla funciona em quais dias?</button>
+      <div class="faq-answer"><p>A parrilla de lenha funciona aos sábados e domingos, das 12h às 16h. Almoços em outros dias podem ser organizados sob consulta para hóspedes. Não é necessário ser hóspede para almoçar — mas recomendamos reserva pelo WhatsApp.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Onde fica o Recanto das Seriemas?</button>
+      <div class="faq-answer"><p>Na Serra do Itaqueri, São Pedro SP, a 990 metros de altitude. Fica a 15 minutos de Brotas e a menos de 2 horas de São Paulo, Campinas, Ribeirão Preto e São Carlos. O Recanto está dentro do Distrito Turístico Águas e Aventuras, criado em março de 2026.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">O vinhedo já produz vinho?</button>
+      <div class="faq-answer"><p>O vinhedo tem menos de 2 anos e ainda está em formação — com variedades Syrah, Cabernet Franc, Marselan e Sauvignon Blanc. As experiências de degustação utilizam vinhos selecionados e curados, harmonizados com queijo artesanal e pão de fermentação natural produzidos na propriedade.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Quais experiências estão disponíveis?</button>
+      <div class="faq-answer"><p>Piquenique no Vinhedo (R$220/casal), Degustação Guiada com Harmonização (R$130/pessoa), Degustação ao Pôr do Sol (R$95/pessoa) e Mesa sob a Árvore Centenária (R$75/pessoa + parrilla). Todas com agendamento pelo WhatsApp.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Aceita crianças e pets?</button>
+      <div class="faq-answer"><p>Sim, crianças de todas as idades são bem-vindas. O Recanto tem espaço ao ar livre, gramado amplo e playground. Consulte sobre pets pelo WhatsApp.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Qual a avaliação no Airbnb?</button>
+      <div class="faq-answer"><p>★5.0 com Superhost — estamos no top 5% dos anfitriões do Airbnb. Somos um negócio familiar e cada hóspede é recebido pessoalmente.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA BAND -->
 <section class="cta-band" id="reservar">
   <div class="cta-inner">
@@ -942,10 +1091,14 @@ footer {
     </div>
     <div class="footer-col">
       <h5>Contato</h5>
-      <a href="#reservar">WhatsApp</a>
-      <a href="https://instagram.com/seriemasparrilla" target="_blank">Instagram</a>
+      <a href="https://wa.me/5511991124853" target="_blank">WhatsApp: (11) 99112-4853</a>
+      <a href="https://instagram.com/seriemasparrilla" target="_blank">@seriemasparrilla</a>
       <a href="#localizacao">Como chegar</a>
     </div>
+  </div>
+  <div style="max-width:1200px; margin:0 auto 24px; padding:20px 0; border-top:1px solid var(--sand); font-size:13px; color:var(--warm-gray); line-height:1.7; text-align:center;">
+    Recanto das Seriemas — Itaqueri da Serra, São Pedro, SP · CEP 13530-000 · Tel: (11) 99112-4853<br>
+    Distrito Turístico Águas e Aventuras · Serra do Itaqueri · 990m de altitude · A 15 min de Brotas
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Recanto das Seriemas. Todos os direitos reservados.</span>
@@ -955,6 +1108,11 @@ footer {
     </div>
   </div>
 </footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5511991124853?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20Recanto%20das%20Seriemas" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.34 0-4.508-.646-6.374-1.766l-.444-.271-3.065 1.028 1.028-3.065-.271-.444A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
 
 <script>
 // Navbar scroll effect
