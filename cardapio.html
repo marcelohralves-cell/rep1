@@ -11,57 +11,244 @@
 <meta property="og:description" content="Cortes nobres na brasa, entradas artesanais e sobremesas na parrilla. Aberto aos fins de semana na Serra do Itaqueri.">
 <meta property="og:image" content="https://recantodasseriemas.com.br/images/food/combo-prato.jpg">
 <meta property="og:url" content="https://recantodasseriemas.com.br/cardapio.html">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --cream: #FAF6F0; --warm-white: #FFFDF9; --sand: #E8DFD0;
   --terracotta: #B85C3A; --terracotta-light: #D4845F;
   --olive: #5C6B4F; --charcoal: #2C2825; --warm-gray: #8A8078;
+  --gold: #C4A265;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--cream); color:var(--charcoal); font-family:'DM Sans',sans-serif; }
-.back { position:fixed; top:24px; left:24px; z-index:10;
-  background:var(--terracotta); color:#fff; text-decoration:none;
-  padding:10px 20px; border-radius:100px; font-size:13px; font-weight:500;
-  letter-spacing:1px; transition:.3s; }
-.back:hover { background:var(--terracotta-light); }
-header { text-align:center; padding:80px 24px 40px; }
-.tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--terracotta); font-weight:500; margin-bottom:12px; }
-h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,52px); font-weight:400; margin-bottom:12px; }
-h1 em { font-style:italic; color:var(--terracotta); }
-.sub { color:var(--warm-gray); font-size:15px; max-width:500px; margin:0 auto; line-height:1.6; }
-.menu-images { max-width:900px; margin:0 auto; padding:0 24px 60px; display:flex; flex-direction:column; gap:32px; }
-.menu-img { width:100%; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,.1); }
-.cta-section { text-align:center; padding:40px 24px 80px; }
-.cta-btn { display:inline-block; background:var(--terracotta); color:#fff;
-  padding:16px 40px; border-radius:100px; text-decoration:none;
-  font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
-  transition:.3s; }
-.cta-btn:hover { background:var(--terracotta-light); }
-.note { color:var(--warm-gray); font-size:13px; margin-top:16px; }
-footer { background:var(--charcoal); color:rgba(255,255,255,.5); text-align:center;
-  padding:32px 24px; font-size:12px; }
+body { background:var(--cream); color:var(--charcoal); font-family:'DM Sans',sans-serif; -webkit-font-smoothing:antialiased; }
+.topbar { position:fixed; top:0; left:0; right:0; z-index:50; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; background:rgba(250,246,240,.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,.04); }
+.topbar a { text-decoration:none; }
+.topbar-logo { font-family:'Playfair Display',serif; font-size:18px; color:var(--charcoal); font-weight:600; }
+.topbar-logo span { color:var(--terracotta); }
+.topbar-back { font-size:12px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--terracotta); }
+.topbar-back:hover { color:var(--terracotta-light); }
+.hero { text-align:center; padding:120px 24px 48px; position:relative; }
+.hero::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60px; height:1px; background:var(--terracotta); opacity:.3; }
+.hero-tag { font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--terracotta); font-weight:500; margin-bottom:20px; }
+.hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,6vw,64px); font-weight:300; line-height:1.15; margin-bottom:16px; color:var(--charcoal); }
+.hero h1 em { font-style:italic; color:var(--terracotta); font-weight:400; }
+.hero-sub { color:var(--warm-gray); font-size:14px; max-width:420px; margin:0 auto; line-height:1.7; }
+.hero-note { display:inline-block; margin-top:20px; font-size:11px; letter-spacing:1px; color:var(--olive); background:rgba(92,107,79,.08); padding:6px 16px; border-radius:100px; }
+.menu-wrap { max-width:860px; margin:0 auto; padding:48px 24px 32px; }
+.menu-section { margin-bottom:56px; }
+.section-header { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+.section-icon { width:40px; height:40px; border-radius:50%; background:var(--terracotta); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:400; letter-spacing:0.5px; }
+.section-desc { font-size:12px; color:var(--warm-gray); margin-top:-20px; margin-bottom:24px; margin-left:56px; line-height:1.5; }
+.menu-item { display:flex; justify-content:space-between; align-items:baseline; padding:14px 0; border-bottom:1px solid rgba(0,0,0,.05); gap:12px; }
+.menu-item:last-child { border-bottom:none; }
+.item-info { flex:1; }
+.item-name { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:500; color:var(--charcoal); }
+.item-desc { font-size:12px; color:var(--warm-gray); margin-top:3px; line-height:1.5; }
+.item-price { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:600; color:var(--terracotta); white-space:nowrap; }
+.featured { background:var(--warm-white); border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:28px; margin-bottom:32px; position:relative; overflow:hidden; }
+.featured::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--terracotta), var(--gold)); }
+.featured-tag { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--terracotta); font-weight:600; margin-bottom:12px; }
+.featured-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; margin-bottom:6px; }
+.featured-desc { font-size:13px; color:var(--warm-gray); line-height:1.6; }
+.featured-price { font-size:20px; font-weight:600; color:var(--terracotta); margin-top:12px; }
+.parrilla-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+@media(max-width:600px){ .parrilla-grid { grid-template-columns:1fr; } }
+.parrilla-card { background:var(--warm-white); border:1px solid rgba(0,0,0,.05); border-radius:12px; padding:20px; transition:transform .2s, box-shadow .2s; }
+.parrilla-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.06); }
+.parrilla-card .item-name { font-size:18px; }
+.parrilla-card .item-desc { margin-top:6px; }
+.parrilla-card .item-price { display:block; margin-top:10px; font-size:18px; }
+.divider { display:flex; align-items:center; gap:16px; margin:48px 0; }
+.divider-line { flex:1; height:1px; background:var(--sand); }
+.divider-dot { width:6px; height:6px; border-radius:50%; background:var(--terracotta); opacity:.4; }
+.cta-section { text-align:center; padding:32px 24px 64px; }
+.cta-btn { display:inline-flex; align-items:center; gap:10px; background:var(--terracotta); color:#fff; padding:16px 40px; border-radius:100px; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:.3s; box-shadow:0 4px 20px rgba(184,92,58,.2); }
+.cta-btn:hover { background:var(--terracotta-light); transform:translateY(-2px); box-shadow:0 8px 30px rgba(184,92,58,.3); }
+.cta-btn svg { width:18px; height:18px; }
+.note { color:var(--warm-gray); font-size:12px; margin-top:16px; }
+footer { background:var(--charcoal); color:rgba(255,255,255,.5); text-align:center; padding:32px 24px; font-size:12px; }
 footer a { color:var(--terracotta-light); text-decoration:none; }
+footer p+p { margin-top:8px; }
+.products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media(max-width:600px){ .products-grid { grid-template-columns:1fr; } }
+.product-card { background:var(--warm-white); border:1px solid rgba(0,0,0,.05); border-radius:12px; padding:20px; text-align:center; }
+.product-card .item-name { font-size:16px; margin-bottom:4px; }
+.product-card .item-desc { font-size:11px; }
+.product-card .item-price { display:block; margin-top:8px; }
+.sub-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; margin:24px 0 16px; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.menu-section { animation:fadeUp .6s ease both; }
+.menu-section:nth-child(2) { animation-delay:.1s; }
+.menu-section:nth-child(3) { animation-delay:.15s; }
+.menu-section:nth-child(4) { animation-delay:.2s; }
 </style>
 </head>
 <body>
-<a href="index.html" class="back">&larr; Voltar</a>
-<header>
-  <div class="tag">Parrilla de Lenha</div>
+<div class="topbar">
+  <a href="index.html" class="topbar-back">&larr; Voltar</a>
+  <a href="index.html" class="topbar-logo">Seriemas <span>Parrilla</span></a>
+  <a href="https://wa.me/5511991124853" class="topbar-back" target="_blank">Reservar</a>
+</div>
+<div class="hero">
+  <div class="hero-tag">Parrilla de Lenha</div>
   <h1>Nosso <em>Cardápio</em></h1>
-  <p class="sub">Cortes nobres na brasa, entradas artesanais, sobremesas na parrilla e produtos para levar. Aberto aos fins de semana — reserva recomendada.</p>
-</header>
-<div class="menu-images">
-  <img src="images/property/cardapio-frente.jpg" alt="Cardápio Recanto das Seriemas — Parrilla de lenha: Bife Ancho R$145, Bife de Chorizo R$125, Picanha R$145, Costelinha Defumada R$115, entradas, porções e bebidas" class="menu-img">
-  <img src="images/property/cardapio-verso.jpg" alt="Cardápio Recanto das Seriemas — Cervejas artesanais, vinhos, sobremesas na parrilla, café coado e produtos artesanais para levar: pão de fermentação natural, queijo fresco, doces caseiros" class="menu-img">
+  <p class="hero-sub">Cortes nobres na brasa, entradas artesanais, sobremesas na parrilla e produtos para levar. Tudo com vista para a Serra do Itaqueri.</p>
+  <span class="hero-note">Aberto sábados e domingos · Reserva recomendada</span>
+</div>
+<div class="menu-wrap">
+  <div class="featured">
+    <div class="featured-tag">Para compartilhar</div>
+    <div class="featured-title">Combo Parrilla — até 4 pessoas</div>
+    <div class="featured-desc">Bife de Chorizo, costelinha suína, frango e linguiças. Acompanha arroz, farofa, vinagrete, legumes grelhados, purê de cabotiá e 2 Batatas Seriema.</div>
+    <div class="featured-price">R$ 315</div>
+  </div>
+  <div class="menu-section">
+    <div class="section-header">
+      <div class="section-icon">🔥</div>
+      <div class="section-title">De Nossa Parrilla</div>
+    </div>
+    <p class="section-desc">Pratos individuais · Aprox. 300g de carne · Acompanha arroz, farofa, vinagrete e Batata Seriema</p>
+    <div class="parrilla-grid">
+      <div class="parrilla-card">
+        <div class="item-name">Bife Ancho</div>
+        <div class="item-desc">Saboroso, marmorizado e suculento. Fibras curtas e maciez acentuada.</div>
+        <span class="item-price">R$ 145</span>
+      </div>
+      <div class="parrilla-card">
+        <div class="item-name">Bife de Chorizo</div>
+        <div class="item-desc">A gordura lateral acentua o sabor inconfundível, preservando a umidade natural.</div>
+        <span class="item-price">R$ 125</span>
+      </div>
+      <div class="parrilla-card">
+        <div class="item-name">Picanha</div>
+        <div class="item-desc">Corte de carne bovina tipicamente brasileiro, grelhado na brasa.</div>
+        <span class="item-price">R$ 145</span>
+      </div>
+      <div class="parrilla-card">
+        <div class="item-name">Assado de Tira</div>
+        <div class="item-desc">Costela nobre extraída da parte dianteira do boi Angus.</div>
+        <span class="item-price">R$ 145</span>
+      </div>
+      <div class="parrilla-card">
+        <div class="item-name">Costelinha Suína</div>
+        <div class="item-desc">Defumada e assada lentamente na parrilla. Suculenta e macia.</div>
+        <span class="item-price">R$ 115</span>
+      </div>
+      <div class="parrilla-card">
+        <div class="item-name">Frango alla Grilia</div>
+        <div class="item-desc">Sobrecoxa desossada, assada na parrilla.</div>
+        <span class="item-price">R$ 75</span>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="item-info"><div class="item-name">Vegetariano</div><div class="item-desc">Legumes grelhados do dia, purê de cabotiá com requeijão de corte, batata seriema e cogumelos na manteiga.</div></div>
+      <span class="item-price">R$ 80</span>
+    </div>
+    <div class="menu-item">
+      <div class="item-info"><div class="item-name">Kids</div><div class="item-desc">Carne (100g), fritas, arroz e feijão.</div></div>
+      <span class="item-price">R$ 75</span>
+    </div>
+  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <div class="menu-section">
+    <div class="section-header">
+      <div class="section-icon">🧀</div>
+      <div class="section-title">Entradas</div>
+    </div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Queijo Coalho</div><div class="item-desc">Nosso queijo coalho caseiro, servido com melado (aprox. 180g).</div></div><span class="item-price">R$ 50</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Provolone com Cogumelos e Tomate Confit</div><div class="item-desc">Fatia de provolone grelhada coberta com cogumelos e tomates.</div></div><span class="item-price">R$ 60</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Pão de Alho</div><div class="item-desc">Nosso pão de fermentação natural grelhado com alho e manteiga ghee (duas fatias largas).</div></div><span class="item-price">R$ 50</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Especial da Casa</div><div class="item-desc">Antepasto do dia, azeitonas, tomate seco, queijo da casa e pão de fermentação natural.</div></div><span class="item-price">R$ 60</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Salada Seriemas</div><div class="item-desc">Folhas verdes, tomate, azeitonas, cenoura, repolho roxo e queijo fresco.</div></div><span class="item-price">R$ 50</span></div>
+  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <div class="menu-section">
+    <div class="section-header">
+      <div class="section-icon">🍽️</div>
+      <div class="section-title">Porções</div>
+    </div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Linguiça</div><div class="item-desc">Acompanha pão da casa.</div></div><span class="item-price">R$ 50</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Cogumelos na Manteiga</div></div><span class="item-price">R$ 50</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Legumes Grelhados</div></div><span class="item-price">R$ 40</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Purê de Cabotiá</div></div><span class="item-price">R$ 40</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Batata Seriema</div><div class="item-desc">Uma flor de batata.</div></div><span class="item-price">R$ 25</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Batata Frita 500g</div></div><span class="item-price">R$ 45</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Batata Frita 250g</div></div><span class="item-price">R$ 25</span></div>
+  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <div class="menu-section">
+    <div class="section-header">
+      <div class="section-icon">🍷</div>
+      <div class="section-title">Bebidas</div>
+    </div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Refrigerante</div></div><span class="item-price">R$ 10</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Água Mineral</div><div class="item-desc">Com ou sem gás.</div></div><span class="item-price">R$ 7</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Suco Natural 300ml</div><div class="item-desc">Laranja ou limão.</div></div><span class="item-price">R$ 15</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Caipirinha</div><div class="item-desc">Consultar sabores.</div></div><span class="item-price">R$ 30</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Caipirosca</div></div><span class="item-price">R$ 35</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Caipirinha Sagatiba</div></div><span class="item-price">R$ 40</span></div>
+    <div class="sub-title">Cervejas</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Heineken 600ml</div></div><span class="item-price">R$ 22</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Original 600ml</div></div><span class="item-price">R$ 18</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Heineken 330ml</div><div class="item-desc">Com ou sem álcool.</div></div><span class="item-price">R$ 14</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Quilmes (Argentina) 330ml</div></div><span class="item-price">R$ 18</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Patagônia IPA</div></div><span class="item-price">R$ 18</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Patricia (Uruguaia) 960ml</div></div><span class="item-price">R$ 45</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Norteña (Uruguaia) 960ml</div></div><span class="item-price">R$ 45</span></div>
+    <div class="sub-title">Vinhos</div>
+    <p style="font-size:13px;color:var(--warm-gray);margin-bottom:8px;">Tinto, Branco e Rosé — consultar rótulos e valores.</p>
+  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <div class="menu-section">
+    <div class="section-header">
+      <div class="section-icon">🍌</div>
+      <div class="section-title">Sobremesas</div>
+    </div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Banana ou Abacaxi na Parrilla</div></div><span class="item-price">R$ 30</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Banana ou Abacaxi na Parrilla c/ Sorvete</div></div><span class="item-price">R$ 40</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Sorvete</div><div class="item-desc">2 bolas.</div></div><span class="item-price">R$ 25</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Doces Caseiros c/ Queijo Fresco</div><div class="item-desc">Doce de leite, doce de figo, doce de laranja ou goiabada.</div></div><span class="item-price">R$ 35</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Crepe de Doce de Leite</div><div class="item-desc">Com açúcar queimado e sorvete.</div></div><span class="item-price">R$ 40</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Café Coado 200ml</div><div class="item-desc">Serve até 4 pessoas.</div></div><span class="item-price">R$ 15</span></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Café Coado 50ml</div></div><span class="item-price">R$ 6</span></div>
+  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <div class="menu-section">
+    <div class="section-header">
+      <div class="section-icon">🎁</div>
+      <div class="section-title">Leve para Casa</div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="item-name">Pão de Fermentação Natural</div>
+        <div class="item-desc">Feito aqui, toda semana.</div>
+        <span class="item-price">900g R$ 50 · 450g R$ 30</span>
+      </div>
+      <div class="product-card">
+        <div class="item-name">Doces Caseiros</div>
+        <div class="item-desc">De leite, goiabada, figo ou laranja.</div>
+        <span class="item-price">R$ 35</span>
+      </div>
+      <div class="product-card">
+        <div class="item-name">Queijo Fresco</div>
+        <div class="item-desc">Produção própria · aprox. 500g.</div>
+        <span class="item-price">R$ 35</span>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="cta-section">
-  <a href="https://wa.me/5511991124853" class="cta-btn">Reservar pelo WhatsApp</a>
-  <p class="note">Preços e itens sujeitos a alteração. Atualizado em março/2026.</p>
+  <a href="https://wa.me/5511991124853?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20uma%20mesa%20na%20parrilla" class="cta-btn" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.662-1.399A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.137 0-4.146-.563-5.89-1.617l-.41-.257-2.766.83.747-2.853-.267-.424A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+    Reservar Mesa
+  </a>
+  <p class="note">Preços sujeitos a alteração · Atualizado em março/2026</p>
 </div>
 <footer>
   <p>Recanto das Seriemas &middot; São Pedro, SP &middot; Serra do Itaqueri</p>
-  <p style="margin-top:8px"><a href="https://instagram.com/seriemasparrilla">@seriemasparrilla</a></p>
+  <p><a href="index.html">Início</a> &middot; <a href="parrilla-sao-pedro-sp.html">A Parrilla</a> &middot; <a href="pousada-serra-do-itaqueri.html">Pousada</a> &middot; <a href="experiencia-gastronomica-serra-do-itaqueri.html">Experiências</a></p>
+  <p><a href="https://instagram.com/seriemasparrilla" target="_blank">@seriemasparrilla</a></p>
 </footer>
 </body>
 </html>
