@@ -161,12 +161,14 @@ section { padding: 100px 40px; }
   .exp-row, .exp-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
   .topbar { padding: 14px 20px; }
 }
+.topbar-links{display:flex;gap:16px;align-items:center}.topbar-links a{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--charcoal);text-decoration:none;font-weight:500;opacity:.7;transition:opacity .3s}.topbar-links a:hover{opacity:1}@media(max-width:768px){.topbar-links{display:none}}
 </style>
 </head>
 <body>
 
 <nav class="topbar">
-  <a href="/" class="topbar-logo">Recanto das <span>Seriemas</span></a>
+  <a href="index.html" class="topbar-logo">Recanto das <span>Seriemas</span></a>
+  <div class="topbar-links"><a href="index.html">Início</a><a href="parrilla-sao-pedro-sp.html">Parrilla</a><a href="experiencia-gastronomica-serra-do-itaqueri.html">Experiências</a><a href="pousada-serra-do-itaqueri.html">Suítes</a><a href="almoco-domingo-sao-pedro.html">Almoço</a><a href="cardapio.html">Cardápio</a></div>
   <a href="https://wa.me/5511991124853?text=Ol%C3%A1%2C%20quero%20reservar%20uma%20experi%C3%AAncia%20no%20Recanto" class="topbar-cta" target="_blank">Reservar</a>
 </nav>
 
@@ -174,7 +176,7 @@ section { padding: 100px 40px; }
   <div>
     <div class="hero-tag">São Pedro SP — Serra do Itaqueri — 990m de altitude</div>
     <h1>Experiência gastronômica<br>na <em>Serra do Itaqueri</em></h1>
-    <p>Parrilla de lenha, vinhos selecionados, queijo artesanal e pão de fermentação natural — com hospedagem panorâmica a 15 minutos de Brotas. Um fim de semana que vira memória.</p>
+    <p>Parrilla de lenha, vinhos selecionados, queijo artesanal e pão de fermentação natural — com hospedagem panorâmica a 35 km de Brotas e 15 km do Patrimônio. Um fim de semana que vira memória.</p>
     <a href="#reservar" class="btn">Reserve sua experiência</a>
   </div>
 </header>
@@ -197,7 +199,7 @@ section { padding: 100px 40px; }
       <div class="section-tag">Fogo & Técnica</div>
       <h3>A parrilla de lenha</h3>
       <p>Braseiro real, sem atalhos. Cortes selecionados que descansam no calor certo pelo tempo certo. A costelinha defumada leva 6 horas. Os legumes vêm da região. Cada refeição é um evento — aberto aos fins de semana, com vagas limitadas e reserva recomendada.</p>
-      <p style="margin-top:16px"><a href="/cardapio.html" style="color:var(--terracotta); font-weight:600; text-decoration:none; font-size:13px; letter-spacing:1px; text-transform:uppercase">Ver cardápio completo →</a></p>
+      <p style="margin-top:16px"><a href="cardapio.html" style="color:var(--terracotta); font-weight:600; text-decoration:none; font-size:13px; letter-spacing:1px; text-transform:uppercase">Ver cardápio completo →</a></p>
     </div>
   </div>
 
@@ -208,7 +210,7 @@ section { padding: 100px 40px; }
       <div class="section-tag">Ficar & Descansar</div>
       <h3>A pousada com vista</h3>
       <p>6 suítes com varanda e rede, cada uma com vista para o vale e o pôr do sol da Serra do Itaqueri. O café da manhã vem com queijo fresco, pão artesanal, geleias caseiras e frutas da região. Silêncio absoluto. Piscina panorâmica. ★5.0 no Airbnb, top 5% dos anfitriões.</p>
-      <p style="margin-top:16px"><a href="/pousada-serra-do-itaqueri.html" style="color:var(--terracotta); font-weight:600; text-decoration:none; font-size:13px; letter-spacing:1px; text-transform:uppercase">Conhecer a pousada →</a></p>
+      <p style="margin-top:16px"><a href="pousada-serra-do-itaqueri.html" style="color:var(--terracotta); font-weight:600; text-decoration:none; font-size:13px; letter-spacing:1px; text-transform:uppercase">Conhecer a pousada →</a></p>
     </div>
   </div>
 
@@ -273,12 +275,12 @@ section { padding: 100px 40px; }
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.34 0-4.508-.646-6.374-1.766l-.444-.271-3.065 1.028 1.028-3.065-.271-.444A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
     Reserve pelo WhatsApp
   </a>
-  <p style="margin-top:20px; font-size:13px; color:var(--warm-gray)">(11) 99112-4853 · @seriemasparrilla</p>
+  <p style="margin-top:20px; font-size:13px; color:var(--warm-gray)">(11) 99112-4853 · <a href="https://instagram.com/seriemasparrilla" target="_blank" style="color:inherit">@seriemasparrilla</a></p>
 </section>
 
 <footer class="lp-footer">
   <p>Recanto das Seriemas — Itaqueri da Serra, São Pedro SP · Distrito Turístico Águas e Aventuras</p>
-  <p style="margin-top:8px"><a href="/">Página principal</a> · <a href="/parrilla-sao-pedro-sp.html">A Parrilla</a> · <a href="/pousada-serra-do-itaqueri.html">A Pousada</a> · <a href="/cardapio.html">Cardápio</a> · <a href="https://instagram.com/seriemasparrilla" target="_blank">Instagram</a></p>
+  <p style="margin-top:8px"><a href="index.html">Página principal</a> · <a href="parrilla-sao-pedro-sp.html">A Parrilla</a> · <a href="pousada-serra-do-itaqueri.html">A Pousada</a> · <a href="cardapio.html">Cardápio</a> · <a href="https://instagram.com/seriemasparrilla" target="_blank">Instagram</a></p>
 </footer>
 
 <a href="https://wa.me/5511991124853" class="wa-float" target="_blank" aria-label="WhatsApp">
