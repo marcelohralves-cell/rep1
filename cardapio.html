@@ -104,6 +104,52 @@ footer p+p { margin-top:8px; }
 .mb-toggle:checked ~ .topbar .mb-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 body:has(.mb-toggle:checked){overflow:hidden}
 @media(max-width:768px){.mb-btn{display:flex}.topbar-social{display:none}}
+
+@media(max-width:768px){
+  .hero{min-height:auto!important;height:auto!important;max-height:none!important}
+  header.hero{min-height:auto!important;padding-top:108px!important;padding-bottom:60px!important}
+  section.hero{min-height:75vh!important;max-height:640px!important}
+  /* Homepage hero (img-based, full-bleed) */
+  .nv ~ .hero, body > .hero{height:75vh!important;max-height:640px!important;min-height:480px!important}
+}
+@media(max-width:380px){
+  section.hero{min-height:65vh!important;max-height:560px!important}
+  .nv ~ .hero, body > .hero{height:65vh!important;max-height:560px!important;min-height:420px!important}
+  header.hero{padding-top:96px!important;padding-bottom:48px!important}
+}
+
+
+@media(max-width:768px){
+  .hero-sub{font-size:15px!important;line-height:1.7!important}
+  .section-desc{font-size:14px!important}
+  .menu-section .item-desc, .menu-section p{font-size:13.5px!important;line-height:1.6!important}
+  footer p{font-size:13px!important;line-height:1.7!important}
+}
+
+
+@media(max-width:768px){
+  /* Tap target mínimo 44px (Apple HIG) — aumenta área clicável sem mudar layout visual */
+  footer a{display:inline-block;padding:8px 4px;min-height:32px;line-height:1.6}
+  footer p a{padding:6px 2px;min-height:28px}
+  /* Ícones sociais maiores no mobile */
+  .nv-social a, .topbar-social a, .mb-social a{padding:6px}
+  .nv-social svg, .topbar-social svg{width:26px!important;height:26px!important}
+  /* WhatsApp float maior */
+  .wa-float, .whatsapp-float{width:60px!important;height:60px!important}
+}
+
+
+@media(max-width:768px){
+  .mb-social a{padding:10px}
+  .mb-social svg{width:24px!important;height:24px!important}
+  .mb-btn{width:44px!important;height:44px!important}
+}
+
+
+@media(max-width:768px){
+  .topbar-cta{display:none!important}
+}
+
 </style>
 </head>
 <body>
