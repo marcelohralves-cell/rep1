@@ -89,16 +89,16 @@ body:has(.mb-toggle:checked){overflow:hidden}
 @media(max-width:768px){.mb-btn{display:flex}.topbar-social{display:none}}
 
 @media(max-width:768px){
-  .hero{min-height:auto!important;height:auto!important;max-height:none!important}
-  header.hero{min-height:auto!important;padding-top:108px!important;padding-bottom:60px!important}
-  section.hero{min-height:75vh!important;max-height:640px!important}
-  /* Homepage hero (img-based, full-bleed) */
-  .nv ~ .hero, body > .hero{height:75vh!important;max-height:640px!important;min-height:480px!important}
+  /* Hero mobile: header-style (landing pages SEO) — altura conforme conteúdo, nunca esticado */
+  header.hero{min-height:auto!important;height:auto!important;max-height:none!important;padding:96px 24px 56px!important}
+  /* Hero mobile: section/div-style (homepage, cardapio) — altura limitada */
+  section.hero, div.hero{min-height:auto!important;height:auto!important;max-height:none!important}
+  /* Homepage hero (full-bleed background image): controla via height direto, mas nunca acima de 70vh */
+  .nv ~ section.hero{height:70vh!important;max-height:600px!important;min-height:440px!important}
 }
 @media(max-width:380px){
-  section.hero{min-height:65vh!important;max-height:560px!important}
-  .nv ~ .hero, body > .hero{height:65vh!important;max-height:560px!important;min-height:420px!important}
-  header.hero{padding-top:96px!important;padding-bottom:48px!important}
+  header.hero{padding:88px 20px 44px!important}
+  .nv ~ section.hero{height:62vh!important;max-height:520px!important;min-height:400px!important}
 }
 
 
@@ -128,6 +128,27 @@ body:has(.mb-toggle:checked){overflow:hidden}
   .topbar-cta{display:none!important}
 }
 
+/* sm-hero-fix */
+
+@media(max-width:380px){
+  .hero h1{font-size:28px!important;line-height:1.12!important;margin-bottom:16px!important}
+  .hero-tag{font-size:10px!important;margin-bottom:14px!important;letter-spacing:2.5px!important}
+  .hero p, .hero .sub{font-size:14px!important;margin-bottom:18px!important}
+  .hero .btn{padding:12px 28px!important;font-size:11px!important}
+  /* Compactar social proof se houver */
+  .social-proof{gap:14px!important;flex-wrap:wrap!important}
+  .social-proof > *{font-size:11px!important}
+}
+/* tap-fix */
+
+@media(max-width:768px){
+  /* Logo topbar: área tocável 44px */
+  .topbar-logo{padding:8px 0!important;display:inline-block;min-height:44px;line-height:1.6}
+  /* Links contextuais inline em prosa: aumentar line-height pra criar área vertical maior */
+  p a{line-height:1.9}
+  /* CTAs do cardapio: garantir 44px */
+  .menu-wrap .btn, a.btn{min-height:44px!important;padding:14px 28px!important;display:inline-flex!important;align-items:center;justify-content:center}
+}
 </style>
 </head>
 <body>
