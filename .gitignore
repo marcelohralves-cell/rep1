@@ -1,0 +1,25 @@
+# Imagens e vídeos não utilizados no site
+imagens/*
+!imagens/.gitkeep
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Arquivos temporários
+*.log
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node/Build
+node_modules/
+dist/
+build/
