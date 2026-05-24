@@ -407,4 +407,7 @@ body:has(.mb-toggle:checked){overflow:hidden}
 </a>
 
 <script>
-(function(){var t=document.getElementById('mb-toggle'
+(function(){var t=document.getElementById('mb-toggle');if(!t)return;document.querySelectorAll('.mb-overlay a, .mb-backdrop').forEach(function(el){el.addEventListener('click',function(){t.checked=false})});})();
+</script>
+</body>
+</html>

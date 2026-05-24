@@ -475,4 +475,16 @@ body:has(.mb-toggle:checked){overflow:hidden}
     </div>
   </div>
   <div style="margin-top:28px;padding-top:14px;border-top:1px solid var(--bd);font-size:10px;color:#CCC;text-align:center">
-    © 2026 Recanto das Seriemas · São Pedro, SP · Serra do Itaqueri · <a href="parrilla-sao-pedro-sp.html" style="color:#CCC">Parrilla</a> · <a href="pousada
+    © 2026 Recanto das Seriemas · São Pedro, SP · Serra do Itaqueri · <a href="parrilla-sao-pedro-sp.html" style="color:#CCC">Parrilla</a> · <a href="pousada-serra-do-itaqueri.html" style="color:#CCC">Pousada</a> · <a href="experiencia-gastronomica-serra-do-itaqueri.html" style="color:#CCC">Experiências</a> · <a href="almoco-domingo-sao-pedro.html" style="color:#CCC">Almoço de Domingo</a> · <a href="eventos-casamento-serra-do-itaqueri.html" style="color:#CCC">Eventos</a> · <a href="cardapio.html" style="color:#CCC">Cardápio</a>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('s',window.scrollY>80)});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});},{threshold:.08});
+document.querySelectorAll('.sec').forEach(el=>obs.observe(el));
+const mbT=document.getElementById('mb-toggle');
+document.querySelectorAll('.mb-overlay a, .mb-backdrop').forEach(el=>el.addEventListener('click',()=>{mbT.checked=false}));
+</script>
+</body>
+</html>
