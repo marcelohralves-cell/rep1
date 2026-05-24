@@ -1,0 +1,110 @@
+name: HTML Integrity & Brand Guardrails
+
+# Enforces CLAUDE.md §12 checklist automatically on every PR and push to main.
+# Bug it prevents: push v5.2 (commit 96081e6) merged 3 HTMLs sem closing tags
+# porque o §12 era validado só manualmente.
+
+on:
+  pull_request:
+    paths:
+      - '**/*.html'
+      - '.github/workflows/html-integrity.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.html'
+
+jobs:
+  integrity:
+    name: HTML closing tags + §2/§4 grep
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 1) Closing tags — every HTML must have exactly 1 </html> e 1 </body>
+        run: |
+          BROKEN=0
+          while IFS= read -r f; do
+            h=$(grep -c "</html>" "$f" || true)
+            b=$(grep -c "</body>" "$f" || true)
+            if [ "$h" != "1" ] || [ "$b" != "1" ]; then
+              echo "::error file=$f::Closing tags inválidas (</html>=$h, </body>=$b). Veja CLAUDE.md §12."
+              BROKEN=1
+            fi
+          done < <(find . -type f -name "*.html" -not -path "./.git/*" -not -path "./node_modules/*")
+          if [ $BROKEN -eq 1 ]; then
+            echo "::error::FALHA — integridade HTML quebrada. CLAUDE.md §12 exige 1 </html> e 1 </body> em cada página."
+            exit 1
+          fi
+          echo "OK — todos os HTMLs têm closing tags válidos."
+
+      - name: 2) Termos proibidos §2 — não podem aparecer em nenhum HTML
+        run: |
+          set +e
+          BAD=0
+          # Lista exata da §2 do CLAUDE.md
+          declare -a TERMS=(
+            "centenária"
+            "árvore centenária"
+            "da uva à taça"
+            "vinhedos próprios"
+            "menos de 2 horas de São Paulo"
+            "ingredientes daqui"
+          )
+          for term in "${TERMS[@]}"; do
+            matches=$(grep -ril "$term" --include="*.html" . 2>/dev/null)
+            if [ -n "$matches" ]; then
+              echo "::error::Termo proibido '$term' encontrado em:"
+              echo "$matches" | while read m; do echo "::error file=$m::contém '$term' (CLAUDE.md §2)"; done
+              BAD=1
+            fi
+          done
+          if [ $BAD -eq 1 ]; then exit 1; fi
+          echo "OK — nenhum termo proibido encontrado."
+
+      - name: 3) Rostos ocultos §4 — Marcelo e Marco Aurélio NUNCA em texto/alt
+        run: |
+          set +e
+          BAD=0
+          # Procura "Marcelo" e "Marco Aurélio" em conteúdo textual de HTMLs.
+          # Permite apenas em comentários ou metadados? Não — §4 diz "NUNCA".
+          for term in "Marcelo" "Marco Aurélio" "Marco Aurelio"; do
+            matches=$(grep -rl "$term" --include="*.html" . 2>/dev/null)
+            if [ -n "$matches" ]; then
+              echo "::error::Nome proibido '$term' encontrado em:"
+              echo "$matches" | while read m; do echo "::error file=$m::contém '$term' (CLAUDE.md §4)"; done
+              BAD=1
+            fi
+          done
+          if [ $BAD -eq 1 ]; then exit 1; fi
+          echo "OK — Marcelo/Marco ausentes."
+
+      - name: 4) og:image obrigatório em toda página
+        run: |
+          set +e
+          BAD=0
+          while IFS= read -r f; do
+            count=$(grep -c 'property="og:image"' "$f" || true)
+            if [ "$count" -lt "1" ]; then
+              echo "::error file=$f::Sem og:image (CLAUDE.md §10)"
+              BAD=1
+            fi
+          done < <(find . -maxdepth 2 -type f -name "*.html" -not -path "./.git/*")
+          if [ $BAD -eq 1 ]; then exit 1; fi
+          echo "OK — og:image presente em todas as páginas."
+
+      - name: 5) Atribuição do pão §3 — sem "fazemos pão"/"produzimos pão"
+        run: |
+          set +e
+          BAD=0
+          for term in "fazemos pão" "produzimos pão" "nosso pão de fermentação" "pão saído do nosso forno"; do
+            matches=$(grep -ril "$term" --include="*.html" . 2>/dev/null)
+            if [ -n "$matches" ]; then
+              echo "::error::Atribuição errada do pão: '$term' (CLAUDE.md §3 — pão é da Milene)"
+              echo "$matches" | while read m; do echo "::error file=$m::'$term'"; done
+              BAD=1
+            fi
+          done
+          if [ $BAD -eq 1 ]; then exit 1; fi
+          echo "OK — atribuição do pão correta."
