@@ -80,11 +80,16 @@ jobs:
           if [ $BAD -eq 1 ]; then exit 1; fi
           echo "OK — Marcelo/Marco ausentes."
 
-      - name: 4) og:image obrigatório em toda página
+      - name: 4) og:image obrigatório (exceto redirect stubs)
         run: |
           set +e
           BAD=0
           while IFS= read -r f; do
+            # Pular stubs de redirect (meta http-equiv="refresh") — não precisam de og:image
+            if grep -qE 'http-equiv="refresh"' "$f"; then
+              echo "Skipping redirect stub: $f"
+              continue
+            fi
             count=$(grep -c 'property="og:image"' "$f" || true)
             if [ "$count" -lt "1" ]; then
               echo "::error file=$f::Sem og:image (CLAUDE.md §10)"
@@ -92,7 +97,7 @@ jobs:
             fi
           done < <(find . -maxdepth 2 -type f -name "*.html" -not -path "./.git/*")
           if [ $BAD -eq 1 ]; then exit 1; fi
-          echo "OK — og:image presente em todas as páginas."
+          echo "OK — og:image presente em todas as páginas reais."
 
       - name: 5) Atribuição do pão §3 — sem "fazemos pão"/"produzimos pão"
         run: |
