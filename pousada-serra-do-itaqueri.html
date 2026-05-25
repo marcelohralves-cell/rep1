@@ -85,6 +85,15 @@ section{padding:100px 40px}
 .mb-toggle:checked ~ .topbar .mb-btn span:nth-child(2){opacity:0}
 .mb-toggle:checked ~ .topbar .mb-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 body:has(.mb-toggle:checked){overflow:hidden}
+
+/* Image object-position helpers — evita crop ruim em fotos com altura/aspect fixo */
+.img-pos-sky    {object-position:center 25% !important}  /* lua, pôr-do-sol alto */
+.img-pos-horizon{object-position:center 30% !important}  /* céu + vale drone */
+.img-pos-people {object-position:center 35% !important}  /* hosts, cerimônias */
+.img-pos-mid    {object-position:center 40% !important}  /* árvore + ação centro-sup */
+.img-pos-center {object-position:center 50% !important}  /* paisagem padrão */
+.img-pos-food   {object-position:center 60% !important}  /* comida, brasa, mesa */
+
 @media(max-width:768px){.mb-btn{display:flex}.topbar-social{display:none}}
 
 @media(max-width:768px){
@@ -241,13 +250,13 @@ body:has(.mb-toggle:checked){overflow:hidden}
 <section style="padding-top:0">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px;max-width:1400px;margin:0 auto">
     <figure style="margin:0;line-height:0">
-      <img src="images/property/piscina-entardecer.jpg" alt="Piscina panorâmica do Recanto das Seriemas com espreguiçadeiras, guarda-sol e palmeiras — pousada na Serra do Itaqueri" loading="lazy" style="width:100%;height:320px;object-fit:cover;display:block">
+      <img class="img-pos-center" src="images/property/piscina-entardecer.jpg" alt="Piscina panorâmica do Recanto das Seriemas com espreguiçadeiras, guarda-sol e palmeiras — pousada na Serra do Itaqueri" loading="lazy" style="width:100%;height:320px;object-fit:cover;display:block">
     </figure>
     <figure style="margin:0;line-height:0">
-      <img src="images/property/suites-golden-hour.jpg" alt="Suítes do Recanto das Seriemas ao pôr do sol com seriemas no gramado e o vale da Serra do Itaqueri ao fundo" loading="lazy" style="width:100%;height:320px;object-fit:cover;display:block">
+      <img class="img-pos-mid" src="images/property/suites-golden-hour.jpg" alt="Suítes do Recanto das Seriemas ao pôr do sol com seriemas no gramado e o vale da Serra do Itaqueri ao fundo" loading="lazy" style="width:100%;height:320px;object-fit:cover;display:block">
     </figure>
     <figure style="margin:0;line-height:0">
-      <img src="images/food/pao-fermentacao-arvore-vale.jpg" alt="Pão de fermentação natural artesanal com a figueira e o vale da Serra do Itaqueri ao fundo — Recanto das Seriemas" loading="lazy" style="width:100%;height:320px;object-fit:cover;display:block">
+      <img class="img-pos-food" src="images/food/pao-fermentacao-arvore-vale.jpg" alt="Pão de fermentação natural artesanal com a figueira e o vale da Serra do Itaqueri ao fundo — Recanto das Seriemas" loading="lazy" style="width:100%;height:320px;object-fit:cover;display:block">
     </figure>
   </div>
 </section>
@@ -261,10 +270,10 @@ body:has(.mb-toggle:checked){overflow:hidden}
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;max-width:1100px;margin:0 auto">
     <figure style="margin:0;line-height:0">
-      <img src="images/suites/suite-cama-vista-vale-pordosol.jpg" alt="Interior de suíte com cama de casal, lençóis claros, teto de madeira e janela aberta enquadrando o vale da Serra do Itaqueri — Recanto das Seriemas" loading="lazy" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;display:block">
+      <img class="img-pos-center" src="images/suites/suite-cama-vista-vale-pordosol.jpg" alt="Interior de suíte com cama de casal, lençóis claros, teto de madeira e janela aberta enquadrando o vale da Serra do Itaqueri — Recanto das Seriemas" loading="lazy" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;display:block">
     </figure>
     <figure style="margin:0;line-height:0">
-      <img src="images/suites/s1-cover.jpg" alt="Varanda da suíte ao pôr do sol com vista panorâmica para o vale da Serra do Itaqueri — Recanto das Seriemas" loading="lazy" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;display:block">
+      <img class="img-pos-center" src="images/suites/s1-cover.jpg" alt="Varanda da suíte ao pôr do sol com vista panorâmica para o vale da Serra do Itaqueri — Recanto das Seriemas" loading="lazy" style="width:100%;border-radius:12px;object-fit:cover;aspect-ratio:4/3;display:block">
     </figure>
   </div>
 </section>
@@ -303,16 +312,16 @@ body:has(.mb-toggle:checked){overflow:hidden}
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px;max-width:1400px;margin:0 auto">
     <figure style="margin:0;line-height:0">
-      <img src="images/property/vinhedo-formacao-sol-arvores-serra-itaqueri.jpg" alt="Vale com o vinhedo em formação no Recanto das Seriemas — campo aberto da Serra do Itaqueri" loading="lazy" style="width:280px;height:280px;object-fit:cover;display:block;width:100%">
+      <img class="img-pos-center" src="images/property/vinhedo-formacao-sol-arvores-serra-itaqueri.jpg" alt="Vale com o vinhedo em formação no Recanto das Seriemas — campo aberto da Serra do Itaqueri" loading="lazy" style="width:280px;height:280px;object-fit:cover;display:block;width:100%">
     </figure>
     <figure style="margin:0;line-height:0">
-      <img src="images/property/sunset-banco-vale-drone.jpg" alt="Vinhedo em formação visto do alto — fileiras das parreiras jovens entre o gramado e o bosque, Recanto das Seriemas" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
+      <img class="img-pos-horizon" src="images/property/sunset-banco-vale-drone.jpg" alt="Vinhedo em formação visto do alto — fileiras das parreiras jovens entre o gramado e o bosque, Recanto das Seriemas" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
     </figure>
     <figure style="margin:0;line-height:0">
-      <img src="images/property/vinhedo-cabana-por-do-sol-recanto.jpg" alt="Vinhedo em formação ao entardecer com céu estrelado começando a aparecer — Recanto das Seriemas, Serra do Itaqueri" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
+      <img class="img-pos-mid" src="images/property/vinhedo-cabana-por-do-sol-recanto.jpg" alt="Vinhedo em formação ao entardecer com céu estrelado começando a aparecer — Recanto das Seriemas, Serra do Itaqueri" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
     </figure>
     <figure style="margin:0;line-height:0">
-      <img src="images/property/vinhedo-caminho-lua-crescente-recanto.jpg" alt="Vale do Recanto das Seriemas à noite com lua iluminando o céu — Serra do Itaqueri" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
+      <img class="img-pos-sky" src="images/property/vinhedo-caminho-lua-crescente-recanto.jpg" alt="Vale do Recanto das Seriemas à noite com lua iluminando o céu — Serra do Itaqueri" loading="lazy" style="width:100%;height:280px;object-fit:cover;display:block">
     </figure>
   </div>
 </section>

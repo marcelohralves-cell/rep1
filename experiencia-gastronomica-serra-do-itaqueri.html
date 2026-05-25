@@ -181,6 +181,15 @@ section { padding: 100px 40px; }
 .mb-toggle:checked ~ .topbar .mb-btn span:nth-child(2){opacity:0}
 .mb-toggle:checked ~ .topbar .mb-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 body:has(.mb-toggle:checked){overflow:hidden}
+
+/* Image object-position helpers — evita crop ruim em fotos com altura/aspect fixo */
+.img-pos-sky    {object-position:center 25% !important}  /* lua, pôr-do-sol alto */
+.img-pos-horizon{object-position:center 30% !important}  /* céu + vale drone */
+.img-pos-people {object-position:center 35% !important}  /* hosts, cerimônias */
+.img-pos-mid    {object-position:center 40% !important}  /* árvore + ação centro-sup */
+.img-pos-center {object-position:center 50% !important}  /* paisagem padrão */
+.img-pos-food   {object-position:center 60% !important}  /* comida, brasa, mesa */
+
 @media(max-width:768px){.mb-btn{display:flex}.topbar-social{display:none}}
 
 @media(max-width:768px){
@@ -300,7 +309,7 @@ body:has(.mb-toggle:checked){overflow:hidden}
 <!-- BLOCK 1: A PARRILLA -->
 <section style="background:var(--warm-white)">
   <div class="exp-row">
-    <img src="images/food/parrilla-fogo-closeup.jpg" alt="Pratos na parrilla de lenha com cortes e legumes grelhados, fogo ao fundo — restaurante em São Pedro SP" class="exp-img" loading="lazy">
+    <img src="images/food/parrilla-fogo-closeup.jpg" alt="Pratos na parrilla de lenha com cortes e legumes grelhados, fogo ao fundo — restaurante em São Pedro SP" class="exp-img img-pos-food" loading="lazy">
     <div class="exp-text">
       <div class="section-tag">Fogo & Técnica</div>
       <h3>A parrilla de lenha</h3>
@@ -311,7 +320,7 @@ body:has(.mb-toggle:checked){overflow:hidden}
 
   <!-- BLOCK 2: A POUSADA -->
   <div class="exp-row reverse">
-    <img src="images/property/golden-hour-drone-vale.jpg" alt="Hora dourada sobre o vale da Serra do Itaqueri a 990m de altitude — vista aérea do Recanto das Seriemas" class="exp-img" loading="lazy">
+    <img src="images/property/golden-hour-drone-vale.jpg" alt="Hora dourada sobre o vale da Serra do Itaqueri a 990m de altitude — vista aérea do Recanto das Seriemas" class="exp-img img-pos-horizon" loading="lazy">
     <div class="exp-text">
       <div class="section-tag">Ficar & Descansar</div>
       <h3>A pousada com vista</h3>
@@ -322,7 +331,7 @@ body:has(.mb-toggle:checked){overflow:hidden}
 
   <!-- BLOCK 3: VINHEDO -->
   <div class="exp-row">
-    <img src="images/shared/hosts-marcio-tereza-brinde-vale.jpg" alt="Anfitriões Márcio e Tereza brindando ao pôr do sol no vinhedo em formação — degustação no Recanto das Seriemas, Serra do Itaqueri" class="exp-img" loading="lazy">
+    <img src="images/shared/hosts-marcio-tereza-brinde-vale.jpg" alt="Anfitriões Márcio e Tereza brindando ao pôr do sol no vinhedo em formação — degustação no Recanto das Seriemas, Serra do Itaqueri" class="exp-img img-pos-people" loading="lazy">
     <div class="exp-text">
       <div class="section-tag">Terra & Vinhedo</div>
       <h3>Vinhos, queijo e pôr do sol</h3>
@@ -366,7 +375,7 @@ body:has(.mb-toggle:checked){overflow:hidden}
 <!-- FOR WHO -->
 <section style="background:var(--warm-white)">
   <div class="exp-row">
-    <img src="images/property/casamento-arvore-grande.jpg" alt="Cerimônia de casamento sob a figueira do Recanto das Seriemas, noiva caminhando ao altar com vista panorâmica do vale — Serra do Itaqueri" class="exp-img" loading="lazy">
+    <img src="images/property/casamento-arvore-grande.jpg" alt="Cerimônia de casamento sob a figueira do Recanto das Seriemas, noiva caminhando ao altar com vista panorâmica do vale — Serra do Itaqueri" class="exp-img img-pos-mid" loading="lazy">
     <div class="exp-text">
       <div class="section-tag">Para quem é</div>
       <h3>Casais, comemorações e escapadas</h3>
